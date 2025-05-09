@@ -1,0 +1,476 @@
+.header {
+  position: fixed;
+  border-bottom: 4px solid #0000006e;
+  display: flex;
+  top: 0;
+  background-color: whitesmoke;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 1000;
+
+  .contact {
+    // chat AI
+    .chat-button-wrapper {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: row-reverse;
+      gap: 10px;
+      z-index: 999;
+
+      // Thêm vùng đệm cho wrapper để cải thiện vùng hover
+      &::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        bottom: -10px;
+        left: -100px; // Mở rộng sang trái
+        right: -10px;
+        z-index: -1;
+      }
+
+      .chat-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 0; // chieu cao
+        background: white;
+        border: 5px double #28a745;
+        border-radius: 30px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+        white-space: nowrap;
+        // Đặt chiều rộng cố định khi ở trạng thái expanded
+        width: 160px;
+
+        &:hover {
+          box-shadow: 0 5px 15px rgba(40, 167, 69, 0.8);
+          opacity: 1;
+        }
+
+        .chat-icon {
+          width: 24px;
+          height: 24px;
+          transition: margin 0.3s ease;
+        }
+
+        .chat-text {
+          font-size: 14px;
+          color: #000;
+          margin-right: 8px;
+          opacity: 1;
+          transition: opacity 0.3s ease;
+        }
+      }
+
+      &:not(.expanded) {
+        .chat-toggle {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+
+          .chat-text {
+            opacity: 0;
+            width: 0;
+            margin-right: 0;
+          }
+        }
+      }
+
+      // Còn lại giữ nguyên
+      .chat-box {
+        width: 330px;
+        height: 430px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transition: opacity 0.3s ease;
+        font-size: 1.6rem;
+
+        .chat-header {
+          background: #28a745;
+          color: white;
+          padding: 10px;
+          font-size: 1.6rem;
+          font-weight: bold;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 10px 10px 0 0;
+
+          .btnCloss {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            cursor: pointer;
+          }
+        }
+
+        .chat-content {
+          flex: 1;
+          padding: 10px;
+          overflow-y: auto;
+          scroll-behavior: smooth;
+
+          .user {
+            text-align: right;
+            background-color: #e8f5e9;
+            padding: 8px 12px;
+            border-radius: 12px 12px 0 12px;
+            margin: 8px 0;
+            display: inline-block;
+            float: right;
+            clear: both;
+            max-width: 80%;
+          }
+
+          .bot {
+            text-align: left;
+            background-color: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 12px 12px 12px 0;
+            margin: 8px 0;
+            display: inline-block;
+            float: left;
+            clear: both;
+            max-width: 80%;
+          }
+
+          .loading-text {
+            display: inline-block;
+            position: relative;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 10px;
+          }
+        }
+
+        .chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ddd;
+          background-color: #fff;
+          border-radius: 0 0 10px 10px;
+
+          input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+
+            &:focus {
+              border-color: #28a745;
+              box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+            }
+
+            &:disabled {
+              cursor: not-allowed;
+            }
+          }
+
+          button {
+            margin-left: 6px;
+            padding: 8px 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+              background: #218838;
+            }
+
+            &:disabled {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+
+    /* CLASS DÙNG CHUNG CHO TẤT CẢ NÚT */
+    .fab-button {
+      position: fixed;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 63px;
+      height: 60px;
+      z-index: 1000;
+      border: 5px double transparent;
+
+      /* Thay transition toàn bộ bằng transition cụ thể cho từng thuộc tính */
+      transition: width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+    }
+
+    .fab-button svg {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s ease; /* Rút ngắn thời gian transition */
+    }
+
+    .fab-button .text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-width 0.3s ease; /* Rút ngắn thời gian transition */
+      margin-right: 0; /* Đặt margin mặc định */
+    }
+
+    .fab-button .line1 {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .fab-button .line2 {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* Thêm một vùng đệm để tăng diện tích hover, giảm hiện tượng flicker */
+    .fab-button::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      bottom: -10px;
+      left: -150px; /* Mở rộng vùng hover sang trái */
+      right: -10px;
+      z-index: -1;
+    }
+
+    /* Hiệu ứng hover */
+    .fab-button:hover {
+      width: 170px; /* Đặt giá trị cụ thể thay vì auto */
+      padding: 13px 15px 13px 23px;
+      border-radius: 30px;
+    }
+
+    .fab-button:hover svg {
+      transform: scale(1.1);
+    }
+
+    .fab-button:hover .text-container {
+      opacity: 1;
+      max-width: 120px;
+      margin-right: 8px;
+    }
+
+    /* CÁC CLASS RIÊNG CHO TỪNG NÚT */
+    .fab-chat {
+      bottom: 80px;
+      right: 20px;
+      border-color: #0084ff;
+      transition: width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+    .fab-chat:hover {
+      box-shadow: 0 5px 15px rgba(0, 132, 255, 0.8);
+    }
+    .fab-chat svg path {
+      fill: #0084ff;
+    }
+
+    .fab-call {
+      bottom: 150px;
+      right: 20px;
+      border-color: #28a745;
+      transition: width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+    .fab-call:hover {
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.8);
+    }
+    .fab-call svg path {
+      fill: #28a745;
+    }
+
+    .fab-zalo {
+      bottom: 220px;
+      right: 20px;
+      border-color: #0084ff;
+      transition: width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+    .fab-zalo:hover {
+      box-shadow: 0 5px 15px rgba(0, 132, 255, 0.8);
+    }
+  }
+
+  .left-hed {
+    padding: 2px;
+    margin-left: -50px;
+    .logo {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .center-hed {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .nav {
+      position: relative;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.7rem;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-family: sans-serif;
+      span {
+        font-weight: bold;
+      }
+
+      &:hover {
+        color: #0056b3;
+      }
+
+      &.active {
+        color: #007bff !important;
+      }
+
+      &.has-dropdown > ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        padding: 1rem 0;
+        border-radius: 0.4rem;
+        min-width: 20rem;
+        z-index: 999;
+      }
+
+      &:hover > ul {
+        display: block;
+      }
+
+      ul {
+        li {
+          position: relative;
+          list-style: none;
+          padding: 0 10px;
+
+          a {
+            display: block;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.4rem;
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s;
+            border-bottom: 2px solid #000; // Đường kẻ màu đen giống ảnh
+
+            &.active {
+              color: #007bff !important;
+              font-weight: bold;
+            }
+
+            &:hover {
+              color: #007bff;
+            }
+
+            i {
+              float: right;
+              margin-left: 0.5rem;
+            }
+          }
+
+          &.has-dropdown:hover > ul {
+            display: block;
+          }
+
+          ul {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+            border-radius: 0.4rem;
+            min-width: 20rem;
+            z-index: 1000;
+          }
+        }
+      }
+    }
+
+    i.fa-angle-down {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .right-hed {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .search-container {
+      position: absolute;
+      right: 9.3rem;
+      top: 100%;
+      display: flex;
+      z-index: 100;
+      .search-input {
+        width: 25rem;
+      }
+      .search-button {
+        cursor: pointer;
+        background-color: rgb(255, 53, 53);
+        .fa-magnifying-glass {
+          color: white;
+          font-size: 1.7rem;
+          padding: 0.7rem 1.5rem;
+          &:hover {
+            background-color: black;
+          }
+        }
+      }
+    }
+    .fa-magnifying-glass {
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.8rem;
+    }
+    .flag {
+      width: 45px;
+      height: 27px;
+      margin-right: 0.2rem;
+    }
+  }
+}

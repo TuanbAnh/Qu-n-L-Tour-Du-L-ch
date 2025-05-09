@@ -1,0 +1,321 @@
+//  gốc
+:host {
+  .search-bar {
+    background-color: #5cb8f9; // Màu nền xanh dương
+    padding: 20px;
+    display: flex;
+    margin-top: 70px;
+    justify-content: center;
+    height: 50px;
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 20px; // Khoảng cách giữa các phần tử
+      width: 80vw; // Chiếm toàn bộ chiều rộng
+
+      // Đảm bảo độ rộng các ô bằng nhau
+      > * {
+        flex: 1; // Các phần tử con sẽ có chiều rộng bằng nhau
+      }
+
+      input[type="text"] {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #000000;
+        outline: none;
+        padding: 8px 5px;
+        font-size: 16px;
+        color: #333;
+        transition: border-color 0.3s ease;
+        font-weight: bold;
+
+        &:focus {
+          border-bottom: 3px double #000;
+          font-size: 18px;
+        }
+
+        &::placeholder {
+          color: #313131;
+        }
+      }
+
+      .page-container {
+        position: relative;
+
+        .dropdown-container {
+          position: relative;
+          user-select: none;
+
+          .selected-option {
+            background: #f8f8f8;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            min-width: 200px;
+            font-size: 1.6rem;
+            cursor: pointer;
+
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            border-bottom: 3px solid black;
+
+            &:hover {
+              background-color: #e0e0e0;
+            }
+
+            .dropdown-arrow {
+              position: absolute;
+              right: 15px;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+
+          .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+            .search-container {
+              padding: 1rem;
+
+              .search-input {
+                width: 100%;
+                padding: 0.8rem;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                transition: border-color 0.3s ease;
+
+                &:focus {
+                  border-color: #007bff;
+                  width: 95%;
+                }
+              }
+            }
+
+            .options-container {
+              .option {
+                padding: 1rem 1.5rem;
+                font-size: 1.6rem;
+                cursor: pointer;
+                transition: background 0.2s ease;
+
+                &:hover {
+                  background: #d6eeff;
+                }
+              }
+
+              .parent-option {
+                font-weight: bold;
+                font-size: 1.8rem;
+              }
+
+              .child-option {
+                padding-left: 30px;
+                font-weight: 600;
+                font-size: 1.6rem;
+              }
+
+              .grandchild-option {
+                padding-left: 50px;
+                font-size: 1.6rem;
+              }
+
+              .no-results {
+                text-align: center;
+                padding: 10px;
+                color: #999;
+              }
+            }
+          }
+        }
+      }
+
+      select {
+        background: #f8f8f8;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 16px;
+        min-width: 200px;
+        appearance: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      button {
+        background-color: #fa3030;
+        color: white;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 12px 25px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #c20c0c;
+        }
+      }
+    }
+  }
+}
+
+//  sửa đổi
+:host-context(.news) {
+  .search-bar {
+    background-color: rgba(209, 238, 255, 0.637);
+    padding: 0;
+    display: flex;
+    margin-top: 0;
+    justify-content: center;
+    height: auto;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2rem;
+      width: 100%;
+      max-width: 36rem;
+      padding: 2rem;
+
+      > * {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+
+      input[type="text"] {
+        background: transparent;
+        border: none;
+        border-bottom: 0.1rem solid #000000;
+        outline: none;
+        padding: 1rem 0;
+        font-size: 1.6rem;
+        color: #333;
+        transition: border-color 0.3s ease;
+        font-weight: normal;
+
+        &:focus {
+          border-bottom-color: #000;
+        }
+
+        &::placeholder {
+          color: #757575;
+        }
+      }
+
+      .dropdown-container {
+        position: relative;
+        user-select: none;
+
+        .selected-option {
+          background: transparent;
+          padding: 1rem 0;
+          border: none;
+          border-bottom: 0.1rem solid #000000;
+          border-radius: 0;
+          //  width: 100%;
+          text-align: left;
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 1.6rem;
+
+          .dropdown-text {
+            color: #333;
+          }
+
+          .dropdown-arrow {
+            float: right;
+          }
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #fff;
+          border: 0.1rem solid #ccc;
+          border-radius: 0.5rem;
+          margin-top: 0.5rem;
+          z-index: 1000;
+          max-height: 30rem;
+          overflow-y: auto;
+          box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+
+          .search-container {
+            padding: 1rem;
+
+            .search-input {
+              width: 100%;
+              padding: 0.8rem;
+              border: 0.1rem solid #ccc;
+              border-radius: 0.5rem;
+              outline: none;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #007bff;
+              }
+            }
+          }
+
+          .options-container {
+            .option {
+              padding: 1rem 1.5rem;
+              font-size: 1.6rem;
+              cursor: pointer;
+              transition: background 0.2s ease;
+
+              &:hover {
+                background: #f5f5f5;
+              }
+            }
+
+            .no-results {
+              text-align: center;
+              padding: 1rem;
+              color: #999;
+            }
+          }
+        }
+      }
+
+      button {
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 0;
+        padding: 1.6rem 2rem;
+        font-weight: bold;
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-top: 2rem;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #ffffff;
+          color: #007bff;
+          border: 1px solid #007bff;
+        }
+      }
+    }
+  }
+}

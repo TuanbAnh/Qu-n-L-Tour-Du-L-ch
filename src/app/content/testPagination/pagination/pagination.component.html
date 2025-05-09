@@ -1,0 +1,83 @@
+<div class="content">
+  <h2>Danh sách danh mục</h2>
+  <ul>
+    <li *ngFor="let category of displayedCategories">
+      <strong>{{ category.id }}:</strong> {{ category.name }} -
+      <strong>Trạng thái:</strong>
+      {{ category.status === 1 ? "Hoạt động" : "Không hoạt động" }}
+
+      <button (click)="updateCategory(category.id)">Sửa</button>
+      <button (click)="deleteCategory(category.id)">Xóa</button>
+    </li>
+  </ul>
+
+  <!-- phân trang -->
+  <ul class="container" *ngIf="totalPages > 0">
+    <button
+      (click)="goToFirstPage()"
+      [disabled]="currentPage === 0"
+      [ngClass]="{ wring: currentPage === 0 }"
+      class="btn left1"
+    >
+      <i class="bx bxs-chevrons-left"></i>
+    </button>
+    <button
+      (click)="goToPreviousPage()"
+      [disabled]="currentPage === 0"
+      [ngClass]="{ wring: currentPage === 0 }"
+      class="btn left2"
+    >
+      <i class="bx bxs-chevron-left"></i>
+    </button>
+    <li class="items" *ngFor="let page of displayedPages">
+      <button
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)"
+        class="btn"
+      >
+        {{ page + 1 }}
+      </button>
+    </li>
+    <button
+      (click)="goToNextPage()"
+      [disabled]="currentPage === totalPages - 1"
+      [ngClass]="{ wring: currentPage === totalPages - 1 }"
+      class="btn right1"
+    >
+      <i class="bx bxs-chevron-right"></i>
+    </button>
+    <button
+      (click)="goToLastPage()"
+      [disabled]="currentPage === totalPages - 1"
+      [ngClass]="{ wring: currentPage === totalPages - 1 }"
+      class="btn right2"
+    >
+      <i class="bx bxs-chevrons-right"></i>
+    </button>
+  </ul>
+
+  <!-- form thêm, sửa dữ liệu -->
+  <form [formGroup]="categoryForm" (submit)="onSubmit($event)">
+    <div>
+      <label for="name">Tên danh mục:</label>
+      <input type="text" formControlName="name" id="name" />
+      <div
+        *ngIf="
+          categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched
+        "
+      >
+        <small style="color: red">Tên không được để trống!</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="status">Trạng thái:</label>
+      <select formControlName="status" id="status">
+        <option [value]="1">Hoạt động</option>
+        <option [value]="0">Không hoạt động</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!categoryForm.valid">Thêm</button>
+  </form>
+</div>

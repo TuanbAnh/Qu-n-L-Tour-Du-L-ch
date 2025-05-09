@@ -1,0 +1,102 @@
+<div class="search-bar">
+  <div class="content">
+    <!-- Thanh nhập từ khóa -->
+    <input type="text" placeholder="Nhập từ khóa..." class="keyword-input" />
+
+    <!-- Dropdown chọn danh mục -->
+    <div class="page-container category-dropdown">
+      <div class="dropdown-container" [class.show]="isOpenCategory">
+        <div class="selected-option" (click)="toggleDropdown('category')">
+          {{ selectedCategory || "Chọn danh mục" }}
+          <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="dropdown-menu" *ngIf="isOpenCategory">
+          <div class="search-container">
+            <input
+              #categoryInput
+              type="text"
+              [(ngModel)]="searchTermCategory"
+              (ngModelChange)="onSearch('category', $event)"
+              (compositionend)="filterOptions('category')"
+              placeholder="Tìm kiếm danh mục..."
+              class="search-input"
+            />
+          </div>
+
+          <div class="options-container">
+            <ng-container *ngFor="let parent of filteredCategories">
+              <div
+                class="option parent-option"
+                (click)="selectOption('category', parent.name)"
+              >
+                {{ parent.name }}
+              </div>
+
+              <ng-container *ngFor="let child of parent.children">
+                <div
+                  class="option child-option"
+                  (click)="selectOption('category', child.name)"
+                >
+                  - {{ child.name }}
+                </div>
+
+                <ng-container *ngFor="let grandChild of child.subChildren">
+                  <div
+                    class="option grandchild-option"
+                    (click)="selectOption('category', grandChild)"
+                  >
+                    + {{ grandChild }}
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+
+            <div *ngIf="filteredCategories.length === 0" class="no-results">
+              Không tìm thấy danh mục
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown chọn lịch trình -->
+    <div class="page-container schedule-dropdown">
+      <div class="dropdown-container" [class.show]="isOpenSchedule">
+        <div class="selected-option" (click)="toggleDropdown('schedule')">
+          {{ selectedSchedule || "Chọn lịch trình" }}
+          <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <div class="dropdown-menu" *ngIf="isOpenSchedule">
+          <div class="search-container">
+            <input
+              #scheduleInput
+              type="text"
+              [(ngModel)]="searchTermSchedule"
+              (ngModelChange)="onSearch('schedule', $event)"
+              (compositionend)="filterOptions('schedule')"
+              placeholder="Tìm kiếm lịch trình..."
+              class="search-input"
+            />
+          </div>
+
+          <div class="options-container">
+            <ng-container *ngFor="let schedule of filteredSchedules">
+              <div class="option" (click)="selectOption('schedule', schedule)">
+                {{ schedule }}
+              </div>
+            </ng-container>
+
+            <div *ngIf="filteredSchedules.length === 0" class="no-results">
+              Không tìm thấy lịch trình
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nút tìm kiếm -->
+    <button class="search-button">TÌM KIẾM</button>
+  </div>
+</div>

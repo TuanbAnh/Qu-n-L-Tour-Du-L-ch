@@ -1,0 +1,26 @@
+<div class="slider">
+  <div class="list" #slider>
+    <div class="item" *ngFor="let image of images">
+      <img [src]="image" alt="Ảnh slide" />
+    </div>
+  </div>
+
+  <!-- Nút chuyển ảnh -->
+  <div class="buttons">
+    <button (click)="prev()" class="nav left">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+    <button (click)="next()" class="nav right">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
+
+  <!-- Dots -->
+  <ul class="dots">
+    <li
+      *ngFor="let image of images; let i = index"
+      [class.active]="i === active"
+      (click)="goToSlide(i)"
+    ></li>
+  </ul>
+</div>

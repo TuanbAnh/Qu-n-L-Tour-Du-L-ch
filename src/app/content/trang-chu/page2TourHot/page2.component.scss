@@ -1,0 +1,499 @@
+// Container chính
+.tour-container {
+  height: 100%;
+}
+
+// Thanh tìm kiếm
+.search-bar {
+  width: 97vw;
+  background-color: #5cb8f9; // Màu nền xanh dương
+  padding: 2rem;
+  display: flex;
+  margin-top: 7rem;
+  justify-content: center;
+  height: 60px;
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 20px; // Khoảng cách giữa các phần tử
+    width: 80vw;
+
+    // Đảm bảo độ rộng các ô bằng nhau
+    > * {
+      flex: 1; // Các phần tử con sẽ có chiều rộng bằng nhau
+    }
+
+    input[type="text"] {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #000000;
+      outline: none;
+      padding: 0.8rem 0.5rem;
+      font-size: 1.8rem;
+      color: #333;
+      transition: border-color 0.3s ease;
+      font-weight: bold;
+
+      &:focus {
+        border-bottom: 3px double #000;
+        font-size: 1.8rem;
+      }
+
+      &::placeholder {
+        color: #313131;
+      }
+    }
+
+    .page-container {
+      position: relative;
+
+      .dropdown-container {
+        position: relative;
+        user-select: none;
+
+        .selected-option {
+          background: #f8f8f8;
+          padding: 1rem 1.5rem;
+          border-radius: 10px;
+          min-width: 200px;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: none;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          transition: background-color 0.3s ease;
+          border-bottom: 3px solid black;
+          font-size: 1.6rem;
+
+          &:hover {
+            background-color: #e0e0e0;
+          }
+
+          .dropdown-arrow {
+            margin-left: 1rem;
+          }
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #fff;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          margin-top: 0.5rem;
+          z-index: 1000;
+          max-height: 300px;
+          overflow-y: auto;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+          .search-container {
+            padding: 1rem;
+
+            .search-input {
+              width: 100%;
+              padding: 0.8rem;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              outline: none;
+              transition: border-color 0.3s ease;
+
+              &:focus {
+                border-color: #007bff;
+                width: 95%;
+              }
+            }
+          }
+
+          .options-container {
+            .option {
+              padding: 1rem 1.5rem;
+              cursor: pointer;
+              transition: background 0.2s ease;
+              font-size: 1.6rem;
+
+              &:hover {
+                background: #d6eeff;
+              }
+            }
+
+            .parent-option {
+              font-weight: bold;
+              font-size: 1.8rem;
+            }
+
+            .child-option {
+              padding-left: 3rem;
+              font-weight: 600;
+              font-size: 1.6rem;
+            }
+
+            .grandchild-option {
+              padding-left: 5rem;
+              font-size: 1.6rem;
+            }
+
+            .no-results {
+              text-align: center;
+              padding: 1rem;
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+
+    select {
+      background: #f8f8f8;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 0.5rem;
+      font-size: 1.6rem;
+      min-width: 200px;
+      appearance: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    button {
+      background-color: #fa3030;
+      color: white;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 1.2rem 2.5rem;
+      font-weight: bold;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #c20c0c;
+      }
+    }
+  }
+}
+
+// title-tabs
+.title-tabs {
+  display: flex;
+  justify-content: center;
+
+  // Tiêu đề
+  .tour-title {
+    text-align: center;
+    margin: 1.3rem 0;
+    margin-right: 2.3rem;
+
+    .child {
+      display: flex;
+      h1 {
+        color: rgb(24, 24, 24);
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: "Minion Pro", serif;
+        padding-right: 1rem;
+      }
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+
+  // Tab menu
+  .tour-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .tab {
+      padding: 0.2rem 0.5rem;
+      font-size: 2.5rem;
+      cursor: pointer;
+      position: relative;
+      font-weight: 700;
+      color: #444343;
+
+      &.active {
+        color: #6ac1ff;
+        font-weight: bold;
+        background-color: #ffffff5e;
+
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -0.2rem;
+          left: 0;
+          width: 100%;
+          height: 0.15rem;
+          background-color: #0c71b8;
+        }
+      }
+    }
+  }
+}
+
+// Danh sách tour
+.domestic-tour-list {
+  .tour-par {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    width: 85vw;
+    margin: 2rem auto;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tour-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.568);
+
+    .tour-image {
+      position: relative; // để badge absolute nằm trên
+      width: 100%;
+      aspect-ratio: 14/ 9; /////////////////----------
+      overflow: hidden;
+      border: 1px solid #e2dddd;
+      border-radius: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .discount-badge {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        background-color: #ffffff;
+        color: rgb(0, 153, 255);
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        padding: 0.3rem;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+
+        animation: blinkTwice 6s infinite;
+      }
+
+      // Animation nhấp nháy 2 lần
+      @keyframes blinkTwice {
+        0%,
+        15%,
+        35%,
+        50%,
+        70%,
+        100% {
+          opacity: 1;
+        }
+        25%,
+        60% {
+          opacity: 0;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .tour-info {
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+
+      .tour-title {
+        padding: 0.3rem 0;
+        span {
+          display: block;
+          font-size: 1.6rem;
+          font-weight: bold;
+          color: #201f1f; // màu đỏ nổi bật
+          font-family: sans-serif;
+          transition: color 0.3s ease;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .tour-footer {
+        display: flex;
+        flex-direction: column;
+
+        .tours {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.3rem; // thông tin tour
+
+          .left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem; // thông tin tour
+            color: #000;
+            font-weight: 500;
+            font-family: "Roboto", "sans-serif";
+
+            img {
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+            span {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: #2e2e2e;
+              padding-left: 3px;
+            }
+          }
+
+          .right {
+            color: #d80027;
+          }
+        }
+
+        .week,
+        .car,
+        .hotel,
+        .quantity {
+          .right {
+            font-size: 2rem;
+            font-weight: normal;
+            color: #333;
+          }
+        }
+
+        .week .right,
+        .car .right,
+        .hotel .right {
+          font-weight: normal;
+        }
+
+        .quantity {
+          margin-top: 0.9rem;
+          .left {
+            font-weight: normal;
+          }
+          .right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            i {
+              font-size: 1.5rem;
+              color: #1976d2;
+            }
+
+            button {
+              background: none;
+              border: none;
+              color: #1976d2;
+              font-size: 1.5rem;
+              font-weight: bold;
+              cursor: pointer;
+              text-transform: uppercase;
+              padding: 0;
+
+              &:hover {
+                color: red;
+              }
+            }
+          }
+        }
+
+        .date .right {
+          .discount {
+            color: red;
+            font-size: 1.9rem;
+            font-weight: bold;
+          }
+        }
+
+        .week .right .originalPrice {
+          color: #636262;
+          text-decoration: line-through;
+          font-size: 1.7rem;
+          font-weight: bold;
+        }
+      }
+    }
+    &:hover .tour-info .tour-title span {
+      ////////////////////////
+      color: red;
+    }
+    &:hover {
+      animation: moveUpDown 1s ease-in-out infinite;
+      border: 3px double #6b96c7;
+      box-shadow: 0 4px 6px rgba(74, 144, 226, 0.1),
+        0 10px 20px rgba(74, 144, 226, 0.2), 0 15px 30px rgba(74, 144, 226, 0.3);
+    }
+  }
+
+  .buttonFooter {
+    display: flex;
+    background-color: white;
+    border: none;
+    font-size: 1.5rem;
+    margin: 1rem auto;
+    cursor: pointer;
+    padding: 1rem 8.5rem;
+    border-radius: 1rem;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.3rem;
+    border: 1px solid #0000003f;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+// Responsive
+@media (max-width: 768px) {
+  .tour-list {
+    .tour-card {
+      flex-basis: 100%;
+    }
+  }
+}

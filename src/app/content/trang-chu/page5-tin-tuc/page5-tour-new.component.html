@@ -1,0 +1,41 @@
+<!-- <div class="tour-container">
+  <div class="title">Tin Tức</div>
+
+  <div class="container">
+    <div
+      class="card"
+      *ngFor="let item of arr; let i = index"
+      (mouseenter)="onMouseEnter(i)"
+      (mouseleave)="onMouseLeave()"
+    >
+      <div class="image" [class.hidden]="hoveredIndex === i">
+        <img [src]="item.img" alt="ảnh" />
+      </div>
+
+      <div class="content" [class.show]="hoveredIndex === i">
+        <h3>{{ item.title }}</h3>
+        <div class="par">
+          <i class="fas fa-calendar-alt"></i>
+          <p class="date">{{ item.date }}</p>
+        </div>
+        <p class="item">{{ item.content }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="frame-container">
+    <div
+      *ngFor="let item of infoTour.imgList; let i = index"
+      [ngClass]="'s s' + (i + 1)"
+      [routerLink]="[item.link]"
+      class="tour-box"
+    >
+      <img [src]="item.img" [alt]="item.name" />
+      <div class="overlay">
+        <span class="tour-name">{{ item.name | titlecase }}</span>
+      </div>
+    </div>
+  </div>
+</div>

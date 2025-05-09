@@ -1,0 +1,299 @@
+<div class="tour-container">
+  <!-- Thanh tìm kiếm -->
+  <div class="search-bar">
+    <div class="content">
+      <!-- Thanh nhập từ khóa -->
+      <input type="text" placeholder="Nhập từ khóa..." class="keyword-input" />
+
+      <!-- Dropdown chọn danh mục -->
+      <div class="page-container category-dropdown">
+        <div class="dropdown-container" [class.show]="isOpenCategory">
+          <div class="selected-option" (click)="toggleDropdown('category')">
+            {{ selectedCategory || "Chọn danh mục" }}
+            <span class="dropdown-arrow">▼</span>
+          </div>
+
+          <div class="dropdown-menu" *ngIf="isOpenCategory">
+            <div class="search-container">
+              <input
+                #categoryInput
+                type="text"
+                [(ngModel)]="searchTermCategory"
+                (ngModelChange)="onSearch('category', $event)"
+                (compositionend)="filterOptions('category')"
+                placeholder="Tìm kiếm danh mục..."
+                class="search-input"
+              />
+            </div>
+
+            <div class="options-container">
+              <ng-container *ngFor="let parent of filteredCategories">
+                <div
+                  class="option parent-option"
+                  (click)="selectOption('category', parent.name)"
+                >
+                  {{ parent.name }}
+                </div>
+
+                <ng-container *ngFor="let child of parent.children">
+                  <div
+                    class="option child-option"
+                    (click)="selectOption('category', child.name)"
+                  >
+                    - {{ child.name }}
+                  </div>
+
+                  <ng-container *ngFor="let grandChild of child.subChildren">
+                    <div
+                      class="option grandchild-option"
+                      (click)="selectOption('category', grandChild)"
+                    >
+                      + {{ grandChild }}
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+
+              <div *ngIf="filteredCategories.length === 0" class="no-results">
+                Không tìm thấy danh mục
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dropdown chọn lịch trình -->
+      <div class="page-container schedule-dropdown">
+        <div class="dropdown-container" [class.show]="isOpenSchedule">
+          <div class="selected-option" (click)="toggleDropdown('schedule')">
+            {{ selectedSchedule || "Chọn lịch trình" }}
+            <span class="dropdown-arrow">▼</span>
+          </div>
+
+          <div class="dropdown-menu" *ngIf="isOpenSchedule">
+            <div class="search-container">
+              <input
+                #scheduleInput
+                type="text"
+                [(ngModel)]="searchTermSchedule"
+                (ngModelChange)="onSearch('schedule', $event)"
+                (compositionend)="filterOptions('schedule')"
+                placeholder="Tìm kiếm lịch trình..."
+                class="search-input"
+              />
+            </div>
+
+            <div class="options-container">
+              <ng-container *ngFor="let schedule of filteredSchedules">
+                <div
+                  class="option"
+                  (click)="selectOption('schedule', schedule)"
+                >
+                  {{ schedule }}
+                </div>
+              </ng-container>
+
+              <div *ngIf="filteredSchedules.length === 0" class="no-results">
+                Không tìm thấy lịch trình
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nút tìm kiếm -->
+      <button class="search-button">TÌM KIẾM</button>
+    </div>
+  </div>
+
+  <!-- Tiêu đề -->
+  <div class="title-tabs">
+    <div class="tour-title">
+      <div class="child">
+        <h1>TOUR LỄ 30/4 - 1/5</h1>
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAR9JREFUSEvt1cEqRVEUxvHfHZKUKRNjJiYmSiIleQJPw3uYewcldWMi8hhkQJQw1KqtrhPn7GNf95C764zO2ue/v+98a+2ejlavI64xeGTO/1mrF3GD+7ZWlSiexQXusIrHNvAS8CF2E+wSm23gJeAZnGApwa+whqcc5SXg+P40jrGcYOdJeSO8FBy8qaR8EL6B5zrlwwC/w4+wkmBn2KqDN4HnEU/OmsQBIu2xThP85bPNTeB97OVQv6iJ8O3gtfr+14LbWD2RrJ5L6vrYxresznU5oNFWQwtXDjjaaTDR0cs/3k6dDJDqyMyeWmFjU6rrrK5eEuu5c7oUHOkNlbfpn47sWoyDL+AaDzkpHKwpsbot60P9GFxkX5vN/8/qNxVZNB8T8o94AAAAAElFTkSuQmCC"
+        />
+      </div>
+    </div>
+
+    <!-- Tab menu -->
+    <div class="tour-tabs">
+      <div
+        [ngClass]="{ active: domesticInternational === 'domestic' }"
+        (click)="toggle('domestic')"
+        class="tab"
+      >
+        Tour Trong Nước
+      </div>
+      <div
+        [ngClass]="{ active: domesticInternational === 'international' }"
+        (click)="toggle('international')"
+        class="tab"
+      >
+        Tour Nước Ngoài
+      </div>
+    </div>
+  </div>
+
+  <!-- Danh sách tour trong nước-->
+  <div class="domestic-tour-list" *ngIf="domesticInternational === 'domestic'">
+    <div class="tour-par">
+      <div class="tour-card" *ngFor="let ar of infoTour.arr.slice(0, 4)">
+        <div class="tour-image">
+          <img [src]="ar.img" alt="" />
+
+          <!-- badge -->
+          <div class="discount-badge" *ngIf="ar.original > ar.discount">
+            -{{
+              ((ar.original - ar.discount) / ar.original) * 100
+                | number : "1.0-0"
+            }}%
+          </div>
+        </div>
+
+        <div class="tour-info">
+          <div class="tour-title">
+            <span>{{ ar.title }}</span>
+          </div>
+
+          <div class="tour-footer">
+            <div class="tours date">
+              <div class="left">
+                <img src="icon_Tour/clock.png" alt="" /><span>{{
+                  ar.date
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="discount">
+                  {{ infoTour.formatVND(ar.discount) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours week">
+              <div class="left">
+                <img src="icon_Tour/calendar.png" alt="" /><span>{{
+                  ar.week
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="originalPrice">
+                  {{ infoTour.formatVND(ar.original) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours car">
+              <div class="left">
+                <img src="icon_Tour/bus.png" alt="" /><span>{{ ar.cart }}</span>
+              </div>
+            </div>
+
+            <div class="tours hotel">
+              <div class="left">
+                <img src="icon_Tour/hotel.png" alt="" /><span>{{
+                  ar.hotel
+                }}</span>
+              </div>
+            </div>
+
+            <div class="tours quantity">
+              <div class="left">
+                <img src="icon_Tour/chair.png" alt="Ghế tour" />
+                <span>{{ ar.quantity }}</span>
+              </div>
+              <div class="right">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i
+                ><button>Xem Thêm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="buttonFooter">Xem Thêm Sản Phẩm</button>
+  </div>
+
+  <!-- Danh sách tour ngoài nước-->
+  <div
+    class="domestic-tour-list"
+    *ngIf="domesticInternational === 'international'"
+  >
+    <div class="tour-par">
+      <div class="tour-card" *ngFor="let ar of infoTour.arr2.slice(0, 4)">
+        <div class="tour-image">
+          <img [src]="ar.img" alt="" />
+
+          <!-- badge -->
+          <div class="discount-badge" *ngIf="ar.original > ar.discount">
+            -{{
+              ((ar.original - ar.discount) / ar.original) * 100
+                | number : "1.0-0"
+            }}%
+          </div>
+        </div>
+
+        <div class="tour-info">
+          <div class="tour-title">
+            <span>{{ ar.title }}</span>
+          </div>
+
+          <div class="tour-footer">
+            <div class="tours date">
+              <div class="left">
+                <img src="icon_Tour/clock.png" alt="" /><span>{{
+                  ar.date
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="discount">
+                  {{ infoTour.formatVND(ar.discount) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours week">
+              <div class="left">
+                <img src="icon_Tour/calendar.png" alt="" /><span>{{
+                  ar.week
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="originalPrice">
+                  {{ infoTour.formatVND(ar.original) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours car">
+              <div class="left">
+                <img src="icon_Tour/bus.png" alt="" /><span>{{ ar.cart }}</span>
+              </div>
+            </div>
+
+            <div class="tours hotel">
+              <div class="left">
+                <img src="icon_Tour/hotel.png" alt="" /><span>{{
+                  ar.hotel
+                }}</span>
+              </div>
+            </div>
+
+            <div class="tours quantity">
+              <div class="left">
+                <img src="icon_Tour/chair.png" alt="Ghế tour" />
+                <span>{{ ar.quantity }}</span>
+              </div>
+              <div class="right">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i
+                ><button>Xem Thêm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="buttonFooter">Xem Thêm Sản Phẩm</button>
+  </div>
+</div>

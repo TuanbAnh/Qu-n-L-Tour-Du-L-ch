@@ -1,0 +1,73 @@
+<div class="content content-video">
+  <div class="left">
+    <div class="title">{{ title }}</div>
+
+    <div class="youtube">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/aqBU6aeDBd0?si=MquuB-kKt2ed5GJe"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- tour-liên-quan -->
+    <div class="tour">
+      <div class="the-tour">
+        <i class="fa fa-tags" aria-hidden="true"></i>
+      </div>
+
+      <div class="listTour">
+        <div class="item" *ngFor="let i of tourList">
+          <span>{{ i }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide -->
+    <div class="slider">
+      <div class="title">video liên quan</div>
+
+      <app-slider-album></app-slider-album>
+    </div>
+  </div>
+
+  <!--Bên phải - Phần news của bạn -->
+  <div class="news">
+    <div class="ve-chung-toi">
+      <div class="heading">
+        <img
+          src="https://www.vietnamtravelgroup.com.vn/datafiles/web30s/upload/images/1000-1100/30S-03-1047/pattern_sidebar.png"
+          alt="pattern"
+        />
+        <h3>VỀ CHÚNG TÔI</h3>
+      </div>
+      <p>
+        Công Ty Lữ Hành Quốc tế <strong>Vietnam Travel Group</strong> cung cấp
+        các sản phẩm du lịch hấp dẫn, an toàn cho Quý khách qua các chương trình
+        du lịch trong và ngoài nước
+      </p>
+    </div>
+
+    <div class="ve-chung-toi">
+      <div class="heading">
+        <img
+          src="https://www.vietnamtravelgroup.com.vn/datafiles/web30s/upload/images/1000-1100/30S-03-1047/pattern_sidebar.png"
+          alt="pattern"
+        />
+        <h3>TIN TỨC MỚI</h3>
+      </div>
+    </div>
+
+    <div class="news-container">
+      <div class="tin-tuc" *ngFor="let n of news">
+        <img [src]="n.img" alt="" />
+        <div class="news-title">{{ n.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>

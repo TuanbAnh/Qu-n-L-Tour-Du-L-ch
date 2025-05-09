@@ -1,0 +1,144 @@
+.content {
+  display: grid;
+  grid-template-columns: 3fr 1fr; // tương đương flex: 3 và flex: 1
+  gap: 3rem;
+  width: 85%;
+  overflow: hidden;
+  margin: 30px auto;
+
+  .left {
+    .title {
+      font-size: 2.8rem;
+      font-weight: bold;
+      padding: 10px;
+      font-family: "Cal Sans", sans-serif;
+    }
+
+    .youtube {
+      width: 100%;
+      iframe {
+        width: 100%;
+        height: 500px;
+      }
+    }
+
+    .tour {
+      display: flex;
+      padding: 10px;
+      font-size: 1.6rem;
+
+      .the-tour {
+        display: flex;
+        align-items: center;
+
+        i {
+          padding: 0 15px 0 0;
+          color: red;
+          font-size: 2.5rem;
+        }
+      }
+
+      .listTour {
+        display: flex;
+
+        .item {
+          background-color: #bfbfbf;
+          padding: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .slider {
+      border: 1px solid #000;
+
+      app-slider-album {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border: 1px solid #e80404;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .news {
+    overflow: hidden;
+    width: 100%;
+
+    .ve-chung-toi {
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+
+      .heading {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        background-color: #fefce9;
+
+        img {
+          width: 20px;
+          height: 50px;
+          object-fit: cover;
+        }
+
+        h3 {
+          font-size: 1.8rem;
+          font-weight: bold;
+          margin: 0;
+          color: #333;
+        }
+      }
+
+      p {
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        font-weight: 500;
+        margin: 0;
+
+        strong {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .news-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem 0;
+
+      .tin-tuc {
+        img {
+          border-radius: 10px;
+          width: 100%;
+          height: 100%;
+          aspect-ratio: 16 / 9;
+        }
+
+        .news-title {
+          padding: 0.6rem;
+          font-size: 1.4rem;
+          font-weight: bold;
+          font-family: "Poppins", sans-serif;
+          line-height: 2.3rem;
+          color: rgb(44, 44, 44);
+          transition: color 0.3s ease;
+        }
+
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1rem);
+          cursor: pointer;
+
+          .news-title {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}

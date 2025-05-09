@@ -1,0 +1,85 @@
+<div class="tour-container">
+  <div class="title"><span>Tour Mới 2025</span></div>
+
+  <div class="domestic-tour-list">
+    <div class="tour-par">
+      <div
+        class="tour-card"
+        #tourCard
+        *ngFor="let ar of infoTour.arr.slice(0, 4)"
+      >
+        <div class="tour-image">
+          <img [src]="ar.img" alt="" />
+
+          <!-- badge -->
+          <div class="discount-badge" *ngIf="ar.original > ar.discount">
+            -{{
+              ((ar.original - ar.discount) / ar.original) * 100
+                | number : "1.0-0"
+            }}%
+          </div>
+        </div>
+
+        <div class="tour-info">
+          <div class="tour-title">
+            <span>{{ ar.title }}</span>
+          </div>
+
+          <div class="tour-footer">
+            <div class="tours date">
+              <div class="left">
+                <img src="icon_Tour/clock.png" alt="" /><span>{{
+                  ar.date
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="discount">
+                  {{ infoTour.formatVND(ar.discount) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours week">
+              <div class="left">
+                <img src="icon_Tour/calendar.png" alt="" /><span>{{
+                  ar.week
+                }}</span>
+              </div>
+              <div class="right">
+                <div class="originalPrice">
+                  {{ infoTour.formatVND(ar.original) }} vnd
+                </div>
+              </div>
+            </div>
+
+            <div class="tours car">
+              <div class="left">
+                <img src="icon_Tour/bus.png" alt="" /><span>{{ ar.cart }}</span>
+              </div>
+            </div>
+
+            <div class="tours hotel">
+              <div class="left">
+                <img src="icon_Tour/hotel.png" alt="" /><span>{{
+                  ar.hotel
+                }}</span>
+              </div>
+            </div>
+
+            <div class="tours quantity">
+              <div class="left">
+                <img src="icon_Tour/chair.png" alt="Ghế tour" />
+                <span>{{ ar.quantity }}</span>
+              </div>
+              <div class="right">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i
+                ><button>Xem Thêm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="buttonFooter">Xem Thêm Sản Phẩm</button>
+  </div>
+</div>

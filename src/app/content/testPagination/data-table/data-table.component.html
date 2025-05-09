@@ -1,0 +1,118 @@
+<div class="domestic-tour-list">
+  <div class="tour-par">
+    <div class="tour-card" *ngFor="let tour of danhSachTour">
+      <div class="tour-image">
+        <img [src]="tour.img" alt="{{ tour.title }}" />
+        <div class="discount-badge" *ngIf="tour.original > tour.discount">
+          -{{
+            ((tour.original - tour.discount) / tour.original) * 100
+              | number : "1.0-0"
+          }}%
+        </div>
+      </div>
+
+      <div class="tour-info">
+        <div class="tour-title">
+          <span>{{ tour.title }}</span>
+        </div>
+
+        <div class="tour-footer">
+          <div class="tours date">
+            <div class="left">
+              <img src="icon_Tour/clock.png" alt="" /><span>{{
+                tour.date
+              }}</span>
+            </div>
+
+            <div class="right-price1">
+              <div class="discount">
+                {{ thongTinTour.formatVND(tour.discount) }} vnd
+              </div>
+            </div>
+          </div>
+
+          <div class="tours week">
+            <div class="left">
+              <img src="icon_Tour/calendar.png" alt="" /><span>{{
+                tour.week
+              }}</span>
+            </div>
+            <div class="right-price2">
+              <div class="originalPrice">
+                {{ thongTinTour.formatVND(tour.original) }} vnd
+              </div>
+            </div>
+          </div>
+
+          <div class="tours car">
+            <div class="left">
+              <img src="icon_Tour/bus.png" alt="" /><span>{{ tour.cart }}</span>
+            </div>
+          </div>
+
+          <div class="tours hotel">
+            <div class="left">
+              <img src="icon_Tour/hotel.png" alt="" /><span>{{
+                tour.hotel
+              }}</span>
+            </div>
+          </div>
+
+          <div class="tours quantity">
+            <div class="left">
+              <img src="icon_Tour/chair.png" alt="Ghế tour" />
+              <span>{{ tour.quantity }}</span>
+            </div>
+
+            <div class="right">
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i
+              ><button>Xem Thêm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phan-trang">
+    <ul class="container phan-trang" *ngIf="tongSoTrang > 0">
+      <button
+        (click)="denTrangDau()"
+        [disabled]="trangHienTai === 0"
+        class="btn left1"
+      >
+        <i class="bx bxs-chevrons-left"></i>
+      </button>
+      <button
+        (click)="denTrangTruoc()"
+        [disabled]="trangHienTai === 0"
+        class="btn left2"
+      >
+        <i class="bx bxs-chevron-left"></i>
+      </button>
+      <li class="items" *ngFor="let trang of cacTrangHienThi">
+        <button
+          [class.active]="trang === trangHienTai"
+          (click)="denTrang(trang)"
+          class="btn"
+        >
+          {{ trang + 1 }}
+        </button>
+      </li>
+      <button
+        (click)="denTrangSau()"
+        [disabled]="trangHienTai === tongSoTrang - 1"
+        class="btn right1"
+      >
+        <i class="bx bxs-chevron-right"></i>
+      </button>
+      <button
+        (click)="denTrangCuoi()"
+        [disabled]="trangHienTai === tongSoTrang - 1"
+        class="btn right2"
+      >
+        <i class="bx bxs-chevrons-right"></i>
+      </button>
+    </ul>
+  </div>
+</div>

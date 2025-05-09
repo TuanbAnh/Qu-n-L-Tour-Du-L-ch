@@ -1,0 +1,22 @@
+<div class="tour-container">
+  <div class="img"><img src="page4.png" alt="" /></div>
+
+  <div class="video" (click)="showVideo = true">
+    <i class="fa-solid fa-play"></i>
+  </div>
+
+  <!-- Hiển thị video khi click -->
+  <div class="video-popup" *ngIf="showVideo">
+    <div class="video-content">
+      <iframe
+        width="800"
+        height="450"
+        src="https://www.youtube.com/embed/aFjwEEkAsVc"
+        frameborder="0"
+        allowfullscreen
+      >
+      </iframe>
+      <button class="close-btn" (click)="showVideo = false">Đóng</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+.pages {
+  .container {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    button.btn {
+      width: 40px;
+      height: 27px;
+      border: 1px solid #b7b4b4;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5px;
+      color: black;
+      font-weight: bold;
+    }
+
+    button.btn.wring {
+      background-color: #a8a5a5;
+      cursor: default;
+    }
+
+    button.btn.wring:hover {
+      background-color: #a8a5a5;
+      border: none;
+    }
+
+    button.btn.active,
+    button.btn:hover {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border: 1px double rgb(247, 192, 192);
+    }
+
+    .bx {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  .container.pages {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,91 @@
+.container {
+  margin-top: 7rem;
+  .img {
+    img {
+      width: 100%;
+    }
+  }
+
+  .recruitment {
+    width: 75%;
+    max-width: 1100px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 1.6rem;
+    color: #222;
+
+    .title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #007bff;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #007bff;
+      margin: 2rem 0 0.7rem 0;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+
+    .job-card {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed #ccc;
+
+      .job-title {
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: #e53935;
+        display: flex;
+        align-items: center;
+
+        span {
+          font-size: 1.8rem;
+          margin-right: 0.5rem;
+        }
+
+        &:nth-child(2) span {
+          color: green;
+        }
+
+        &:nth-child(3) span {
+          color: orange;
+        }
+
+        &:nth-child(4) span {
+          color: #cc00cc;
+        }
+      }
+
+      a {
+        color: #000000;
+        text-decoration: underline;
+        text-decoration: none;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+    .ul {
+      margin-left: 20px;
+    }
+    .a {
+      color: #007bff;
+    }
+    p.job-title {
+      padding: 15px;
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #e53935;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

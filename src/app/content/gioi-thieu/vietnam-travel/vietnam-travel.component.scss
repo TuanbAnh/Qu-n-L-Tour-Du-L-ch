@@ -1,0 +1,74 @@
+.container {
+  margin-top: 7rem;
+  .img {
+    img {
+      width: 100%;
+    }
+  }
+
+  .company-info {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    color: #333;
+    line-height: 1.6;
+
+    h1 {
+      color: #0074d9;
+      font-size: 3rem;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #111;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+      h3 {
+        font-weight: bold;
+      }
+
+      p {
+        margin: 0.3rem 10px;
+        font-weight: 500;
+        color: #131313;
+        font-size: 1.5rem;
+        &::before {
+          padding-right: 10px;
+          content: "-";
+        }
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 2rem;
+
+        li {
+          margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: #131313;
+        }
+      }
+
+      .ul {
+        margin-left: 20px;
+      }
+    }
+
+    span {
+      display: flex;
+      justify-content: end;
+    }
+  }
+}

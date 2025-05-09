@@ -1,0 +1,142 @@
+<div class="tour-container">
+  <!-- Các phần HTML khác của bạn -->
+
+  <div class="anh-bia" *ngIf="coverPhoto">
+    <img [src]="coverPhoto" alt="Ảnh bìa" />
+  </div>
+
+  <div class="noi-dung">
+    <!-- tiêu đề -->
+    <h2 class="title" *ngIf="tourData?.title && tourData?.date">
+      {{ tourData.title }} - {{ tourData.date }}
+    </h2>
+
+    <!--Bên trái  -->
+    <div class="domestic-tour-list">
+      <!-- - ảnh tour -->
+      <div class="container-img" *ngIf="tourData?.info">
+        <div
+          class="table"
+          *ngFor="let i of tourData.info; let idx = index"
+          (click)="openCustomLightbox(idx)"
+        >
+          <img [src]="i.img" [alt]="tourData.title || 'Ảnh tour'" />
+        </div>
+      </div>
+
+      <!-- tour-liên-quan -->
+      <div class="tour">
+        <div class="the-tour">
+          <i class="fa fa-tags" aria-hidden="true"></i>
+        </div>
+
+        <div class="listTour">
+          <div class="item" *ngFor="let i of tourList">
+            <span>{{ i }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- album-lien-quan -->
+      <div class="album">
+        <div class="header">ALBUM LIÊN QUAN</div>
+
+        <div class="albumList">
+          <div *ngIf="filterAlbum.length > 0; else khongCoAlbum">
+            <div class="trai-nghiem-wrapper">
+              <div
+                class="content"
+                *ngFor="let tn of filterAlbum"
+                [routerLink]="['/', slugify(tn.title)]"
+              >
+                <div class="img">
+                  <img [src]="tn.img" alt="{{ tn.title }}" />
+                </div>
+                <strong>{{ tn.title }} - {{ tn.date }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- THÔNG BÁO KHI KHÔNG CÓ ALBUM -->
+          <ng-template #khongCoAlbum>
+            <div class="no-album">Không có album liên quan.</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!--Bên phải - Phần news của bạn -->
+    <div class="news">
+      <div class="ve-chung-toi">
+        <div class="heading">
+          <img
+            src="https://www.vietnamtravelgroup.com.vn/datafiles/web30s/upload/images/1000-1100/30S-03-1047/pattern_sidebar.png"
+            alt="pattern"
+          />
+          <h3>VỀ CHÚNG TÔI</h3>
+        </div>
+        <p>
+          Công Ty Lữ Hành Quốc tế <strong>Vietnam Travel Group</strong> cung cấp
+          các sản phẩm du lịch hấp dẫn, an toàn cho Quý khách qua các chương
+          trình du lịch trong và ngoài nước
+        </p>
+      </div>
+
+      <div class="ve-chung-toi">
+        <div class="heading">
+          <img
+            src="https://www.vietnamtravelgroup.com.vn/datafiles/web30s/upload/images/1000-1100/30S-03-1047/pattern_sidebar.png"
+            alt="pattern"
+          />
+          <h3>TIN TỨC MỚI</h3>
+        </div>
+      </div>
+
+      <div class="news-container">
+        <div class="tin-tuc" *ngFor="let n of news">
+          <img [src]="n.img" alt="" />
+          <div class="news-title">{{ n.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thêm phần custom lightbox -->
+  <div
+    *ngIf="showCustomLightbox"
+    class="custom-lightbox"
+    (window:keydown)="handleKeyboardEvent($event)"
+  >
+    <div class="close-btn" (click)="closeCustomLightbox()">×</div>
+
+    <div
+      *ngIf="currentImageIndex > 0"
+      class="nav-btn prev-btn"
+      (click)="prevImage()"
+    >
+      ‹
+    </div>
+
+    <img
+      *ngIf="tourData?.info && tourData.info[currentImageIndex]"
+      [src]="tourData.info[currentImageIndex].img"
+      (wheel)="onWheel($event)"
+    />
+
+    <div
+      *ngIf="tourData?.info && currentImageIndex < tourData.info.length - 1"
+      class="nav-btn next-btn"
+      (click)="nextImage()"
+    >
+      ›
+    </div>
+
+    <div class="caption" *ngIf="tourData?.title">
+      {{ tourData.title }} - Ảnh {{ currentImageIndex + 1 }}/{{
+        tourData.info.length
+      }}
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

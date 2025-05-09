@@ -1,0 +1,110 @@
+.slider {
+  width: 100%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  margin-top: 9rem;
+
+  .list {
+    display: flex;
+    transition: left 0.5s ease-in-out;
+    position: relative;
+    left: 0;
+
+    .item {
+      min-width: 100%;
+      transition: transform 0.3s ease;
+      img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    .nav {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 2.4rem;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+
+    li {
+      list-style: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: rgb(155, 155, 155);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &.active {
+        background: white;
+      }
+    }
+  }
+}
+
+// .content-head {
+//   width: 100%;
+//   min-height: 10vh;
+//   max-height: 20vh;
+//   background-image: url("https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/files/aerial-shot-long-road-surrounded-by-trees-fields.jpg");
+//   background-size: cover;
+//   background-position: center;
+//   position: relative;
+//   color: white;
+//   padding: 40px 20px;
+//   top: 1%;
+
+//   span {
+//     display: block;
+//     padding: 5px 15px;
+//     border-left: 5px solid #fff;
+//     font-size: 2rem;
+//     box-shadow: #222 1px 1px 14px;
+//     font-weight: bold;
+//     text-shadow: #222 1px 1px 13px;
+//     max-width: 800px;
+//   }
+
+//   .cont {
+//     background-color: rgba(0, 0, 0, 0.556);
+//     padding: 15px 25px;
+//     border-radius: 10px;
+//     max-width: 900px;
+//     font-size: 1rem;
+//     margin-left: 30%;
+//     margin-top: 5px;
+//   }
+// }

@@ -1,0 +1,121 @@
+<div class="tin-tuc">
+  <div class="anh-bia"><img [src]="'anh-bia/chau-a.jpg'" alt="" /></div>
+
+  <div class="news-container">
+    <!-- Lặp lại 3 khung news -->
+    <div class="news" *ngFor="let chunk of newsChunks">
+      <div class="cha left">
+        <div class="img" *ngIf="chunk[0]">
+          <img [src]="chunk[0].img" alt="Tin tức" />
+        </div>
+
+        <div class="container" *ngIf="chunk[0]">
+          <div class="title">
+            {{ chunk[0].title }}
+          </div>
+          <div class="par">
+            <i class="fas fa-calendar-alt"></i>
+            <p class="date">{{ chunk[0].date }}</p>
+          </div>
+          <div class="content">
+            {{ chunk[0].content }}
+          </div>
+        </div>
+      </div>
+
+      <div class="cha center">
+        <div class="container" *ngIf="chunk[1]">
+          <div class="title">
+            {{ chunk[1].title }}
+          </div>
+          <div class="par">
+            <i class="fas fa-calendar-alt"></i>
+            <p class="date">{{ chunk[1].date }}</p>
+          </div>
+          <div class="content">
+            {{ chunk[1].content }}
+          </div>
+        </div>
+
+        <div class="img" *ngIf="chunk[1]">
+          <img [src]="chunk[1].img" alt="Tin tức" />
+        </div>
+      </div>
+
+      <div class="cha right">
+        <div class="img" *ngIf="chunk[2]">
+          <img [src]="chunk[2].img" alt="Tin tức" />
+        </div>
+        <div class="container" *ngIf="chunk[2]">
+          <div class="title">
+            {{ chunk[2].title }}
+          </div>
+          <div class="par">
+            <i class="fas fa-calendar-alt"></i>
+            <p class="date">{{ chunk[2].date }}</p>
+          </div>
+          <div class="content">
+            {{ chunk[2].content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phân trang -->
+    <div class="noi-dung">
+      <div class="domestic-tour-list">
+        <div class="phan-trang">
+          <ul class="container phan-trang" *ngIf="totalPages > 0">
+            <button
+              (click)="goToFirstPage()"
+              [disabled]="currentPage === 0"
+              [ngClass]="{ wring: currentPage === 0 }"
+              class="btn left1"
+            >
+              <i class="bx bxs-chevrons-left"></i>
+            </button>
+
+            <button
+              (click)="goToPreviousPage()"
+              [disabled]="currentPage === 0"
+              [ngClass]="{ wring: currentPage === 0 }"
+              class="btn left2"
+            >
+              <i class="bx bxs-chevron-left"></i>
+            </button>
+
+            <li class="items" *ngFor="let page of displayedPages">
+              <button
+                [class.active]="page === currentPage"
+                (click)="goToPage(page)"
+                class="btn"
+              >
+                {{ page + 1 }}
+              </button>
+            </li>
+            <button
+              (click)="goToNextPage()"
+              [disabled]="currentPage === totalPages - 1"
+              [ngClass]="{ wring: currentPage === totalPages - 1 }"
+              class="btn right1"
+            >
+              <i class="bx bxs-chevron-right"></i>
+            </button>
+            <button
+              (click)="goToLastPage()"
+              [disabled]="currentPage === totalPages - 1"
+              [ngClass]="{ wring: currentPage === totalPages - 1 }"
+              class="btn right2"
+            >
+              <i class="bx bxs-chevrons-right"></i>
+            </button>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-host">
+    <app-footer></app-footer>
+  </div>
+</div>

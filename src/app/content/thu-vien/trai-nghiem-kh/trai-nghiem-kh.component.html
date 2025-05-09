@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="img">
+    <img
+      src="https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/files/banner2.png"
+      alt="Liên hệ"
+    />
+  </div>
+
+  <div class="trai-nghiem-wrapper">
+    <div
+      class="content"
+      *ngFor="let tn of itemTourList"
+      [routerLink]="['/', slugify(tn.title)]"
+    >
+      <div class="img">
+        <img [src]="tn.img" alt="{{ tn.img }}" />
+      </div>
+      <strong>{{ tn.title }} - {{ tn.date }}</strong>
+    </div>
+  </div>
+
+  <app-phan-trang
+    [arrTour]="paginationList"
+    (paginatedChange)="onTourChanged($event)"
+  ></app-phan-trang>
+
+  <app-footer></app-footer>
+</div>

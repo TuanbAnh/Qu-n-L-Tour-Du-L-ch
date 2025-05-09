@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: center; // Căn giữa theo chiều dọc
+  padding: 0;
+  list-style: none;
+
+  // Đối với tất cả các button trong container (cả icon và số)
+  button.btn {
+    width: 30px; // Kích thước cố định
+    height: 23px; // Kích thước cố định
+    border: 1px solid #b7b4b4;
+    cursor: pointer;
+    display: flex; // Sử dụng flex để căn giữa nội dung
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    padding: 0; // Loại bỏ padding không cần thiết
+  }
+  button.btn.wring {
+    background-color: #a8a5a5;
+    cursor: default;
+  }
+  button.btn.wring:hover {
+    background-color: #a8a5a5; /* Giữ nguyên màu không đổi khi hover */
+    border: none;
+  }
+
+  // Hiệu ứng cho trạng thái active và hover
+  button.btn.active,
+  button.btn:hover {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border: 1px double rgb(247, 192, 192);
+  }
+
+  // Nếu cần điều chỉnh kích thước icon
+  .bx {
+    font-size: 20px;
+    line-height: 1; // Giúp icon không bị lệch
+  }
+}
