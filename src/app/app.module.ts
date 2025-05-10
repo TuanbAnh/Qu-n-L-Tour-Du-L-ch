@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { LightboxModule } from 'ngx-lightbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 import { SearchComponent } from './content/componentService/search/search.component';
 import { GioiThieuComponent } from './content/gioi-thieu/gioi-thieu.component';
 import { TuyenDungComponent } from './content/gioi-thieu/tuyen-dung/tuyen-dung.component';
@@ -17,6 +20,7 @@ import { DataTableComponent } from './content/testPagination/data-table/data-tab
 import { PaginationComponent } from './content/testPagination/pagination/pagination.component';
 import { PhanTrangComponent } from './content/testPagination/phan-trang/phan-trang.component';
 import { ProductComponent } from './content/testPagination/product/product.component';
+
 // import { TourListComponent } from './content/testPagination/tour-list/tour-list.component';
 import { ThuVienComponent } from './content/thu-vien/thu-vien.component';
 import { TraiNghiemKhComponent } from './content/thu-vien/trai-nghiem-kh/trai-nghiem-kh.component';
@@ -82,7 +86,7 @@ import { NewsContentComponent } from './content/testPagination/news-content/news
     TourSliderComponent,
 
     TourListComponent,
-      NewsContentComponent,
+    NewsContentComponent,
   ],
   imports: [
     FormsModule,
@@ -92,6 +96,7 @@ import { NewsContentComponent } from './content/testPagination/news-content/news
     HttpClientModule,
     LightboxModule,
     RouterModule,
+    AngularEditorModule,
   ],
   providers: [PaginationService], // Service
   bootstrap: [AppComponent],
