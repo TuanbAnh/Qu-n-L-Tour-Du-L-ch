@@ -12,59 +12,70 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-1.jpg?t=1648701605',
       title: 'Khám phá ẩm thực đường phố Việt Nam ',
       video: 'https://www.youtube.com/embed/FlRwssZYRM0',
+      category: 'trong nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-2.jpg?t=1648701607',
       title: 'Việt Nam - Vùng đất của những bí mật cổ xưa',
       video: 'https://www.youtube.com/embed/wk4lP5t-Sw0',
+      category: 'trong nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-3.jpg?t=1648701605',
       title:
         '100 đô la có thể kiếm được gì ở VIỆT NAM (Quốc gia có chi phí rẻ nhất thế giới)',
       video: 'https://www.youtube.com/embed/Mp-v65Fl9HM',
+      category: 'trong nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-4.jpg?t=1648701605',
       title: 'Những địa điểm tham quan tuyệt vời ở Việt Nam - Video Du lịch',
       video: 'https://www.youtube.com/embed/Au6LqK1UH8g',
+      category: 'trong nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-8.jpg?t=1648701605',
       title: '10 Những điều bạn KHÔNG nên làm ở Việt Nam',
       video: 'https://www.youtube.com/embed/OPGX05FW_58',
+      category: 'trong nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-9.jpg?t=1648701605',
       title: 'Hướng dẫn Du lịch Kỳ nghỉ tại Seoul',
       video: 'https://www.youtube.com/embed/sr3O7ArQTYY',
+      category: 'ngoài nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-91.jpg?t=1648701605',
       title: 'Hướng dẫn du lịch - Top 10 Seoul',
       video: 'https://www.youtube.com/embed/_aNcrt7Qbs0',
+      category: 'ngoài nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-92.jpg?t=1648701605',
       title:
         'Làm thế nào để dành 14 ngày ở Nhật Bản - Hành trình du lịch Nhật Bản',
       video: 'https://www.youtube.com/embed/IuTDuvYr7f0',
+      category: 'ngoài nước',
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/video-93.jpg?t=1648701605',
       title: 'Chuyến tàu một mình xuyên qua vùng nông thôn Nhật Bản',
       video: 'https://www.youtube.com/embed/mLyeX0EQF10',
+      category: 'ngoài nước',
     },
     {
       img: 'https://sakos.vn/wp-content/uploads/2024/09/5-13.jpg',
       title:
         'Những Cảnh Đẹp Và Kì Quan Trên Thế Giới Mà Vietnam Travel Group Đã Sưu Tầm Về Để Gửi Đến Các Bạn !!!',
       video: 'https://www.youtube.com/embed/NSnkb1IAjbE',
+      category: 'ngoài nước',
     },
     {
       img: 'https://media.vov.vn/sites/default/files/styles/large/public/2023-05/Vi%E1%BB%87t%20Nam%20l%C3%A0%20m%E1%BB%99t%20trong%20nh%E1%BB%AFng%20%C4%91i%E1%BB%83m%20%C4%91%E1%BA%BFn%20du%20l%E1%BB%8Bch%20tuy%E1%BB%87t%20v%E1%BB%9Di%20nh%E1%BA%A5t%20t%E1%BA%A1i%20ch%C3%A2u%20%C3%81.jpg',
       title: 'Trải nghiệm cuộc sống tại đồng bằng sông Cửu Long',
       video: 'https://www.youtube.com/embed/cxKlw3e_kQE',
+      category: 'trong nước',
     },
   ];
 
@@ -104,10 +115,10 @@ export class infoTour {
   // trai-nghiem, trai-nghiem2
   traiNghiem: any = [
     {
-      video: 'https://youtu.be/FlRwssZYRM0?si=14ZpI092Mw6SwBgs',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/dich-vu/Xe/z6226795170237_d673a744ebedd26eaee33651b908053f.jpg?t=1737346344',
       title: 'Kỉ niệm Thái Lan',
       date: '6/2023',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-6.jpg?t=1648701606',
@@ -127,6 +138,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour%20t6/362263870_240220488880899_7617990603008146134_n.jpg',
       title: 'Du lịch Đà Nẵng',
       date: '7/2023',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-7.jpg?t=1648701606',
@@ -149,6 +161,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour%20t6/361666672_715498010615575_4858650398047546333_n.jpg',
       title: 'Khám phá Ba Lan',
       date: '8/2023',
+      continent: 'Châu Âu', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-3.jpg?t=1648701606',
@@ -171,6 +184,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-phu-quoc-1.jpg?t=1648701607',
       title: 'Nghỉ dưỡng Đà Lạt',
       date: '9/2023',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-1.jpg?t=1648701606',
@@ -193,6 +207,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-ninh-binh-8.jpg?t=1648701606',
       title: 'Leo núi Hà Lan',
       date: '10/2023',
+      continent: 'Châu Âu', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-4.png?t=1648701606',
@@ -212,6 +227,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-nha-trang-1.jpg?t=1648701606',
       title: 'Tham quan Hạ Long',
       date: '11/2023',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-1.jpg?t=1648701606',
@@ -252,6 +268,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-2.png?t=1648701606',
       title: 'Trải nghiệm Long An',
       date: '12/2023',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-8.jpg?t=1648701606',
@@ -269,8 +286,9 @@ export class infoTour {
     },
     {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/tour-trung-quoc-1.jpg?t=1648701607',
-      title: ' Tây Ninh',
+      title: 'Tây Ninh',
       date: '1/2024',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-4.png?t=1648701606',
@@ -290,6 +308,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-canada-1.jpg?t=1648701605',
       title: 'Phượt Tây Bắc',
       date: '2/2024',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-4.jpg?t=1648701606',
@@ -309,6 +328,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-my-2.jpg?t=1648701606',
       title: 'Biển đảo Phú Quốc',
       date: '3/2024',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-3.jpg?t=1648701606',
@@ -325,6 +345,7 @@ export class infoTour {
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-da-nang-1.jpg?t=1648701605',
       title: 'Thành phố Hồ Chí Minh',
       date: '4/2024',
+      continent: 'Châu Á', // Ngẫu nhiên
       info: [
         {
           img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/tour-han-quoc-6.jpg?t=1648701606',
@@ -697,6 +718,7 @@ export class infoTour {
   //  tin tức - tour-du-lich
   news = [
     {
+      category: 'ẩm thực',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/Screenshot%202025-04-29%20092455.png',
       date: '25/04/2025',
       title:
@@ -705,6 +727,7 @@ export class infoTour {
         'Hàng loạt sự kiện hoành tráng diễn ra trên cả nước, từ lễ diễu hành, triển lãm đến bắn pháo hoa, tái hiện những mốc son lịch sử của dân tộc.',
     },
     {
+      category: 'du lịch',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/-Siem-Reap-Main-compressed.jpg?t=1676628604',
       date: '28/04/2025',
       title:
@@ -713,6 +736,7 @@ export class infoTour {
         'Cầu Cửa Đại với tổng đầu tư hơn 3.000 tỷ đồng sẽ giảm ùn tắc giao thông và thúc đẩy phát triển kinh tế vùng biển Quảng Nam.',
     },
     {
+      category: 'ẩm thực',
       img: 'https://hnm.1cdn.vn/2025/04/28/cd873cca8e/a783.drone.jpg',
       date: '22/04/2025',
       title:
@@ -721,6 +745,7 @@ export class infoTour {
         'Các nhà lãnh đạo ASEAN nhất trí tăng cường hợp tác chống khủng bố, an ninh mạng và phát triển kinh tế xanh.',
     },
     {
+      category: 'thị trường',
       img: 'https://hnm.1cdn.vn/2025/04/28/cd873cca8e/a784.mapping.jpg',
       date: '30/04/2025',
       title: 'Việt Nam Đăng Cai Giải Vô Địch Bóng Đá U23 Châu Á 2024',
@@ -728,6 +753,7 @@ export class infoTour {
         'Giải đấu quy tụ 16 đội tuyển hàng đầu châu Á sẽ diễn ra tại 5 sân vận động lớn ở Hà Nội, TP.HCM và Đà Nẵng.',
     },
     {
+      category: 'ẩm thực',
       img: 'https://thamhiemmekong.com/wp-content/uploads/2019/05/langdulichmykhanh-2.jpg',
       date: '01/05/2025',
       title:
@@ -736,6 +762,7 @@ export class infoTour {
         'Cuốn sách dày 1.200 trang tổng hợp nghiên cứu mới nhất về lịch sử Việt Nam, từ thời tiền sử đến giai đoạn hiện đại.',
     },
     {
+      category: 'du lịch',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/w-phao-hoa-1-97855.jpg?t=1745207004',
       date: '26/04/2025',
       title: 'Lễ Hội Áo Dài Quốc Tế 2023 Thu Hút Hàng Nghìn Du Khách',
@@ -743,6 +770,7 @@ export class infoTour {
         'Hơn 2.000 người mẫu và nghệ sĩ tham gia trình diễn áo dài truyền thống và cách tân tại phố cổ Hội An.',
     },
     {
+      category: 'thị trường',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/92af86da6d8bded5879a.jpg?t=1744622528',
       date: '24/04/2025',
       title: 'Phát Hiện Di Chỉ Khảo Cổ Mới Tại Thành Nhà Hồ - Di Sản Thế Giới',
@@ -750,6 +778,7 @@ export class infoTour {
         'Các nhà khảo cổ tìm thấy nhiều hiện vật quý từ thời nhà Hồ, gồm đồ gốm, vũ khí và dấu tích kiến trúc cổ.',
     },
     {
+      category: 'du lịch',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/brando2.png',
       date: '29/04/2025',
       title:
@@ -758,6 +787,7 @@ export class infoTour {
         'Các chuyên gia đề xuất giải pháp chống xâm nhập mặn và phát triển nông nghiệp thông minh thích ứng với biến đổi khí hậu.',
     },
     {
+      category: 'ẩm thực',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/w-phao-hoa-1-97855.jpg?t=1745207004',
       date: '27/04/2025',
       title:
@@ -766,6 +796,7 @@ export class infoTour {
         'Trưng bày hơn 100 tác phẩm hội họa, điêu khắc và sắp đặt của 50 nghệ sĩ tiêu biểu trong nước và quốc tế.',
     },
     {
+      category: 'thị trường',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/drone-in-hcmc-read-only-1693968808432357524632.jpg?t=1745809222',
       date: '23/04/2025',
       title:
@@ -774,6 +805,7 @@ export class infoTour {
         'Khám phá màn tổng duyệt 10.500 drone tại TP.HCM vào tối 28/4, chuẩn bị cho sự kiện lớn kỷ niệm 50 năm Ngày Giải phóng miền Nam.',
     },
     {
+      category: 'du lịch',
       img: 'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/tin-tuc/tin-du-lich-3/day-tu-4h-sang-check-in-nhung-noi-ngam-binh-minh-dep-nhat-con-dao-1.webp',
       date: '02/05/2025',
       title:

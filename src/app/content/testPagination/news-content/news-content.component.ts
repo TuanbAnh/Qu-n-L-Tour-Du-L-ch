@@ -23,7 +23,7 @@ export class NewsContentComponent implements OnInit {
       this.tourId = params.get('slug');
 
       if (this.tourId) {
-        this.tourData = this.infoTour.traiNghiem.find(
+        this.tourData = this.infoTour.news.find(
           (t: any) => this.slugify(t.title) === this.tourId
         );
 

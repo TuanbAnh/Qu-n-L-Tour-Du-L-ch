@@ -7,14 +7,17 @@
   <!--Bên trái  -->
   <div class="domestic-tour-list">
     <!-- - ảnh tour -->
-    <div class="container-img" *ngIf="tourData?.info">
-      <div
-        class="table"
-        *ngFor="let i of tourData.info; let idx = index"
-        (click)="openCustomLightbox(idx)"
-      >
-        <img [src]="i.img" [alt]="tourData.title || 'Ảnh tour'" />
-      </div>
+    <div class="container-img">
+      <img
+        src="https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/2017_03_20_23739_1489984971__large%281%29.jpg"
+        alt=""
+      /><img
+        src="https://ik.imagekit.io/tvlk/blog/2022/06/du-lich-cung-dien-hoang-gia-thai-lan-1-1024x683.jpg?tr=dpr-2,w-675"
+        alt=""
+      /><img
+        src="https://a.cdn-hotels.com/gdcs/production186/d1237/ef2785c3-419a-4026-9612-9299eb72aae7.jpg"
+        alt=""
+      />
     </div>
 
     <!-- tour-liên-quan -->
@@ -34,27 +37,7 @@
     <div class="album">
       <div class="header">ALBUM LIÊN QUAN</div>
 
-      <div class="albumList">
-        <div *ngIf="filterAlbum.length > 0; else khongCoAlbum">
-          <div class="trai-nghiem-wrapper">
-            <div
-              class="content"
-              *ngFor="let tn of filterAlbum"
-              [routerLink]="['/', slugify(tn.title)]"
-            >
-              <div class="img">
-                <img [src]="tn.img" alt="{{ tn.title }}" />
-              </div>
-              <strong>{{ tn.title }} - {{ tn.date }}</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- THÔNG BÁO KHI KHÔNG CÓ ALBUM -->
-        <ng-template #khongCoAlbum>
-          <div class="no-album">Không có album liên quan.</div>
-        </ng-template>
-      </div>
+      <app-slider-album></app-slider-album>
     </div>
   </div>
 
@@ -94,39 +77,4 @@
   </div>
 </div>
 
-<!-- Thêm phần custom lightbox -->
-<div
-  *ngIf="showCustomLightbox"
-  class="custom-lightbox"
-  (window:keydown)="handleKeyboardEvent($event)"
->
-  <div class="close-btn" (click)="closeCustomLightbox()">×</div>
-
-  <div
-    *ngIf="currentImageIndex > 0"
-    class="nav-btn prev-btn"
-    (click)="prevImage()"
-  >
-    ‹
-  </div>
-
-  <img
-    *ngIf="tourData?.info && tourData.info[currentImageIndex]"
-    [src]="tourData.info[currentImageIndex].img"
-    (wheel)="onWheel($event)"
-  />
-
-  <div
-    *ngIf="tourData?.info && currentImageIndex < tourData.info.length - 1"
-    class="nav-btn next-btn"
-    (click)="nextImage()"
-  >
-    ›
-  </div>
-
-  <div class="caption" *ngIf="tourData?.title">
-    {{ tourData.title }} - Ảnh {{ currentImageIndex + 1 }}/{{
-      tourData.info.length
-    }}
-  </div>
-</div>
+<app-footer></app-footer>

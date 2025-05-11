@@ -19,10 +19,14 @@ export class TraiNghiemKh2Component implements OnInit {
   constructor(private route: ActivatedRoute, public infoTour: infoTour) {}
 
   ngOnInit(): void {
+    //  lấy id title từ router( title không có dấu)
     this.route.paramMap.subscribe((params) => {
       this.tourId = params.get('slug');
 
+      console.log(`tourID`, this.tourId);
+
       if (this.tourId) {
+        // tìm mục đã chọn bằng cách đổi title có dấu ra không dấu
         this.tourData = this.infoTour.traiNghiem.find(
           (t: any) => this.slugify(t.title) === this.tourId
         );
@@ -142,5 +146,12 @@ export class TraiNghiemKh2Component implements OnInit {
       )
       .sort((a: any, b: any) => b.soTuTrung - a.soTuTrung)
       .map((x: any) => x.item);
+  }
+
+  get relatedAlbums() {
+    console.log(`1: `, this.tourData.continent);
+    return this.infoTour.traiNghiem.filter((data: any) => {
+      return data.continent === this.tourData.continent;
+    });
   }
 }

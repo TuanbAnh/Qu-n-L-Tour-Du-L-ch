@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { SearchComponent } from './content/componentService/search/search.component';
 import { GioiThieuComponent } from './content/gioi-thieu/gioi-thieu.component';
@@ -97,6 +98,7 @@ import { NewsContentComponent } from './content/testPagination/news-content/news
     LightboxModule,
     RouterModule,
     AngularEditorModule,
+    EditorModule,
   ],
   providers: [PaginationService], // Service
   bootstrap: [AppComponent],

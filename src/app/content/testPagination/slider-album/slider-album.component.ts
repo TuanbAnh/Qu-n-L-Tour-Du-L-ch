@@ -20,7 +20,7 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
   totalPages: number = 0;
   itemsPerPage: number = 3; // Hiển thị 3 tour mỗi trang
   autoSlideSubscription: Subscription | null = null;
-  thoiGian: number = 45;
+  thoiGian: number = 2;
 
   // Biến theo dõi sự kiện kéo
   startX: number = 0;

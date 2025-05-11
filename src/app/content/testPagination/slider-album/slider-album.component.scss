@@ -1,15 +1,14 @@
 $tour-card-height: 260px;
-$tour-image-height: 200px;
+$tour-image-height: 190px;
 $tour-gap: 20px;
 $tour-padding: 40px;
 
 .tour-slider-container {
-  max-width: 63vw; // sửa kích cỡ đọc báo phần Album video
+  max-width: 66vw; // sửa kích cỡ đọc báo phần Album video
   padding: 20px 0;
   position: relative;
   user-select: none;
   overflow: hidden;
-  border: 1px solid #000;
 }
 
 .slider-content {
@@ -69,6 +68,7 @@ $tour-padding: 40px;
   .tour-image {
     height: $tour-image-height;
     overflow: hidden;
+    border-radius: 10px;
 
     img {
       width: 100%;
