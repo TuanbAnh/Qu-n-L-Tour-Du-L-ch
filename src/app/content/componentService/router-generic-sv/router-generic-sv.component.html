@@ -1,0 +1,14 @@
+<div class="tour-container">
+  <div class="header" *ngIf="coverPhoto">
+    <img [src]="coverPhoto" alt="Ảnh bìa" />
+  </div>
+
+  <div class="content">
+    <app-content-trai-ngiem
+      *ngIf="currentSection === 'trai-nghiem'"
+    ></app-content-trai-ngiem>
+    <app-category *ngIf="currentSection === 'video'"></app-category>
+  </div>
+
+  <app-footer></app-footer>
+</div>

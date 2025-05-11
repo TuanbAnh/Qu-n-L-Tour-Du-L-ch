@@ -5,6 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class infoTour {
   constructor() {}
+  // chung router
+  currentSection: string = '';
+
+  // Phương thức để đặt section hiện tại
+  setCurrentSection(section: string) {
+    this.currentSection = section;
+    console.log('Set current section:', section);
+  }
+
+  // Phương thức để lấy section hiện tại
+  getCurrentSection() {
+    return this.currentSection;
+  }
 
   // video
   videoList = [

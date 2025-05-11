@@ -9,10 +9,11 @@ import { GioiThieuComponent } from './content/gioi-thieu/gioi-thieu.component';
 import { TuyenDungComponent } from './content/gioi-thieu/tuyen-dung/tuyen-dung.component';
 import { VietnamTravelComponent } from './content/gioi-thieu/vietnam-travel/vietnam-travel.component';
 import { LienHeComponent } from './content/lien-he/lien-he.component';
-import { TraiNghiemKh2Component } from './content/thu-vien/trai-nghiem-kh/trai-nghiem-kh2/trai-nghiem-kh2.component';
 import { TraiNghiemKhComponent } from './content/thu-vien/trai-nghiem-kh/trai-nghiem-kh.component';
 import { VideoComponent } from './content/thu-vien/video/video.component';
 import { Video2Component } from './content/thu-vien/video/video2/video2.component';
+
+import { RouterGenericSvComponent } from './content/componentService/router-generic-sv/router-generic-sv.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -44,7 +45,7 @@ const routes: Routes = [
   { path: 'tuyen-dung', component: TuyenDungComponent },
   { path: 'vietnam-travel', component: VietnamTravelComponent },
 
-  { path: ':slug', component: TraiNghiemKh2Component },
+  { path: ':slug', component: RouterGenericSvComponent },
 
   // Luôn để wildcard route ở cuối cùng
   { path: '**', redirectTo: '/home' },

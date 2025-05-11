@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { infoTour } from '../service/infoTour.service';
 import {
   Component,
   ViewChild,
@@ -50,7 +51,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private elementRef: ElementRef,
-    private http: HttpClient
+    private http: HttpClient,
+    private infoTour: infoTour
   ) {}
 
   ngAfterViewInit() {
@@ -214,6 +216,13 @@ export class HeaderComponent implements OnInit {
     // Đảm bảo đường dẫn có dấu '/' ở đầu
     if (!path.startsWith('/')) {
       path = '/' + path;
+    }
+
+    // Xác định section từ đường dẫn
+    if (path.includes('trai-nghiem-khach-hang')) {
+      this.infoTour.setCurrentSection('trai-nghiem');
+    } else if (path.includes('video')) {
+      this.infoTour.setCurrentSection('video');
     }
 
     // Thêm timeout ngắn để hoàn thành các thao tác DOM

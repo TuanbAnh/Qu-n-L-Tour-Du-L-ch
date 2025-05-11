@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
-import { infoTour } from '../../../../service/infoTour.service';
+import { infoTour } from '../../../service/infoTour.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-trai-nghiem-kh2',
-  templateUrl: './trai-nghiem-kh2.component.html',
-  styleUrls: ['./trai-nghiem-kh2.component.scss'],
+  selector: 'app-content-trai-ngiem',
+  templateUrl: './content-trai-ngiem.component.html',
+  styleUrl: './content-trai-ngiem.component.scss',
 })
-export class TraiNghiemKh2Component implements OnInit {
+export class ContentTraiNgiemComponent implements OnInit {
   @Input() coverPhoto: string = 'anh-bia/tour-du-lich.jpg';
 
   tourId: string | null = null;

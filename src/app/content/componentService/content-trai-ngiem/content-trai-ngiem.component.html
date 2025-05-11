@@ -1,10 +1,6 @@
 <div class="tour-container">
   <!-- Các phần HTML khác của bạn -->
 
-  <div class="anh-bia" *ngIf="coverPhoto">
-    <img [src]="coverPhoto" alt="Ảnh bìa" />
-  </div>
-
   <div class="noi-dung">
     <!-- tiêu đề -->
     <h2 class="title" *ngIf="tourData?.title && tourData?.date">
@@ -46,7 +42,7 @@
             <div class="trai-nghiem-wrapper">
               <div
                 class="content"
-                *ngFor="let tn of relatedAlbums"
+                *ngFor="let tn of filterAlbum"
                 [routerLink]="['/', slugify(tn.title)]"
               >
                 <div class="img">
@@ -137,6 +133,4 @@
       }}
     </div>
   </div>
-
-  <app-footer></app-footer>
 </div>

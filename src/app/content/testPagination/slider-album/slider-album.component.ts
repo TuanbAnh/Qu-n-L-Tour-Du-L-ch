@@ -1,12 +1,20 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation,
+} from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { infoTour } from '../../../service/infoTour.service';
-import { Router } from '@angular/router';
 
-interface TourItem {
+// Interface chung cho các mục hiển thị trong slider
+export interface SliderItem {
+  id?: string | number;
   img: string;
   title: string;
-  video: string;
+  [key: string]: any; // Cho phép các thuộc tính bổ sung
 }
 
 @Component({
@@ -15,38 +23,59 @@ interface TourItem {
   styleUrl: './slider-album.component.scss',
 })
 export class SliderAlbumComponent implements OnInit, OnDestroy {
-  tours: TourItem[] = [];
+  // Inputs để tùy chỉnh
+  @Input() items: SliderItem[] = [];
+  @Input() itemsPerPage: number = 3;
+  @Input() autoSlideInterval: number = 3; // Thời gian tự động chuyển trang (giây)
+  @Input() enableAutoSlide: boolean = true;
+  @Input() showIndicators: boolean = true;
+  @Input() showNavButtons: boolean = true;
+  @Input() containerClass: string = '';
+  @Input() slideTrackClass: string = '';
+  @Input() itemClass: string = '';
+  @Input() createUrlSlug: boolean = true; // Có tạo slug URL hay không
+
+  // Outputs để thông báo các sự kiện
+  @Output() itemClick = new EventEmitter<SliderItem>();
+  @Output() pageChange = new EventEmitter<number>();
+
+  // Các biến trạng thái nội bộ
   currentPage: number = 0;
   totalPages: number = 0;
-  itemsPerPage: number = 3; // Hiển thị 3 tour mỗi trang
   autoSlideSubscription: Subscription | null = null;
-  thoiGian: number = 3;
 
   // Biến theo dõi sự kiện kéo
   startX: number = 0;
   isDragging: boolean = false;
   dragThreshold: number = 50; // Ngưỡng để xác định có chuyển trang hay không
 
-  constructor(private infoTour: infoTour, private router: Router) {}
-
   ngOnInit(): void {
-    // Lấy dữ liệu tour từ service
-    this.tours = this.infoTour.videoList;
-    this.totalPages = Math.ceil(this.tours.length / this.itemsPerPage);
-    this.startAutoSlide();
+    this.calculateTotalPages();
+    if (this.enableAutoSlide) {
+      this.startAutoSlide();
+    }
   }
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
   }
 
+  ngOnChanges(): void {
+    // Khi dữ liệu đầu vào thay đổi, tính lại tổng số trang
+    this.calculateTotalPages();
+  }
+
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
+  }
+
   startAutoSlide(): void {
     this.stopAutoSlide();
-    this.autoSlideSubscription = interval(this.thoiGian * 1000).subscribe(
-      () => {
-        this.nextPage();
-      }
-    );
+    this.autoSlideSubscription = interval(
+      this.autoSlideInterval * 1000
+    ).subscribe(() => {
+      this.nextPage();
+    });
   }
 
   stopAutoSlide(): void {
@@ -57,13 +86,16 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
   }
 
   resetAutoSlideTimer(): void {
-    this.stopAutoSlide();
-    this.startAutoSlide();
+    if (this.enableAutoSlide) {
+      this.stopAutoSlide();
+      this.startAutoSlide();
+    }
   }
 
   goToPage(pageIndex: number): void {
     if (pageIndex >= 0 && pageIndex < this.totalPages) {
       this.currentPage = pageIndex;
+      this.pageChange.emit(this.currentPage);
       this.resetAutoSlideTimer();
     }
   }
@@ -85,15 +117,9 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
     return `translateX(-${this.currentPage * 100}%)`;
   }
 
-  // Lấy các tour thuộc trang hiện tại
-  get currentPageTours(): TourItem[] {
-    const startIndex = this.currentPage * this.itemsPerPage;
-    return this.tours.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  // Tạo mảng chứa các phần tử rỗng để hiển thị khi số tour không đủ 3 trên trang cuối
+  // Tạo mảng chứa các phần tử rỗng để hiển thị khi số mục không đủ trên trang cuối
   get emptySlots(): number[] {
-    const remainder = this.tours.length % this.itemsPerPage;
+    const remainder = this.items.length % this.itemsPerPage;
     if (remainder === 0) return [];
     return Array(this.itemsPerPage - remainder).fill(0);
   }
@@ -115,7 +141,6 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
     if (!this.isDragging) return;
 
     // Không ngăn chặn sự kiện mặc định để tránh làm gián đoạn trải nghiệm cuộn trang
-    // event.preventDefault() được loại bỏ
   }
 
   // Kết thúc kéo và xử lý chuyển trang
@@ -130,7 +155,7 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
       endX = event.changedTouches[0].clientX;
     } else {
       this.isDragging = false;
-      this.startAutoSlide();
+      this.resetAutoSlideTimer();
       return;
     }
 
@@ -149,28 +174,22 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
 
     // Đặt lại trạng thái kéo
     this.isDragging = false;
-    this.startAutoSlide();
+    this.resetAutoSlideTimer();
   }
 
   // Xử lý khi người dùng rời khỏi slider trong khi đang kéo
   onTouchLeave(): void {
     if (this.isDragging) {
       this.isDragging = false;
-      this.startAutoSlide();
+      this.resetAutoSlideTimer();
     }
   }
 
-  // Hàm để chuyển hướng đến trang chi tiết tour
-  navigateToTour(tour: TourItem): void {
-    // Tạo URL thân thiện từ tiêu đề tour
-    const slug = this.createSlugFromTitle(tour.title);
-    this.router.navigate(['/tour', slug]);
-  }
-
-  // Hàm để tạo slug URL từ tên tour - được phơi ra cho HTML sử dụng
+  // Hàm để tạo slug URL từ tên tiêu đề
   createSlugFromTitle(title: string): string {
+    if (!this.createUrlSlug) return title;
+
     // Chuyển đổi tiêu đề thành đường dẫn URL thân thiện
-    // Ví dụ: "DU LỊCH HÀN QUỐC MÙA HOA ANH ĐÀO" -> "du-lich-han-quoc-mua-hoa-anh-dao"
     return title
       .toLowerCase()
       .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu gạch ngang
@@ -181,6 +200,11 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
       .replace(/[ùúụủũưừứựửữ]/g, 'u')
       .replace(/[ỳýỵỷỹ]/g, 'y')
       .replace(/đ/g, 'd')
-      .replace(/[^\w\-]/g, ''); // Xóa các ký tự đặc biệt
+      .replace(/[^\w-]/g, ''); // Xóa các ký tự đặc biệt
+  }
+
+  // Phương thức để phát sự kiện click cho mục
+  onItemClick(item: SliderItem): void {
+    this.itemClick.emit(item);
   }
 }

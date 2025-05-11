@@ -1,6 +1,11 @@
-<div class="tour-slider-container">
+<!-- generic-slider.component.html -->
+<div class="generic-slider-container" [class]="containerClass">
   <!-- Nút điều hướng bên trái -->
-  <button class="nav-button prev" (click)="previousPage()">
+  <button
+    *ngIf="showNavButtons"
+    class="nav-button prev"
+    (click)="previousPage()"
+  >
     <span class="arrow">&#10094;</span>
   </button>
 
@@ -14,48 +19,50 @@
     (touchmove)="onTouchMove($event)"
     (touchend)="onTouchEnd($event)"
   >
-    <div class="slider-track" [style.transform]="sliderTransform">
-      <!-- Mỗi trang là một tour-page -->
+    <div
+      class="slider-track"
+      [class]="slideTrackClass"
+      [style.transform]="sliderTransform"
+    >
+      <!-- Mỗi trang là một slide-page -->
       <div
-        class="tour-page"
+        class="slide-page"
         *ngFor="let page of [].constructor(totalPages); let pageIndex = index"
       >
-        <div class="tour-row">
-          <!-- Tours cho trang hiện tại -->
+        <div class="slide-row">
+          <!-- Items cho trang hiện tại -->
           <ng-container
             *ngFor="
-              let tour of tours.slice(
+              let item of items.slice(
                 pageIndex * itemsPerPage,
                 pageIndex * itemsPerPage + itemsPerPage
               )
             "
           >
-            <div class="tour-column" *ngIf="tour">
-              <div
-                class="tour-card"
-                [routerLink]="['/', createSlugFromTitle(tour.title)]"
-              >
-                <div class="tour-image">
-                  <img [src]="tour.img" [alt]="tour.title" />
+            <div class="slide-column" [class]="itemClass" *ngIf="item">
+              <div class="slide-item" (click)="onItemClick(item)">
+                <div class="slide-image">
+                  <img [src]="item.img" [alt]="item.title" />
                 </div>
-                <div class="tour-title">
-                  <h3>{{ tour.title }}</h3>
+                <div class="slide-title">
+                  <h3>{{ item.title }}</h3>
                 </div>
               </div>
             </div>
           </ng-container>
 
-          <!-- Nếu trang cuối không đủ 3 tour, thêm card rỗng -->
+          <!-- Nếu trang cuối không đủ items, thêm card rỗng -->
           <ng-container
             *ngIf="
-              pageIndex === totalPages - 1 && tours.length % itemsPerPage !== 0
+              pageIndex === totalPages - 1 && items.length % itemsPerPage !== 0
             "
           >
             <div
-              class="tour-column"
+              class="slide-column"
+              [class]="itemClass"
               *ngFor="let _ of emptySlots; let i = index"
             >
-              <div class="tour-card empty"></div>
+              <div class="slide-item empty"></div>
             </div>
           </ng-container>
         </div>
@@ -64,12 +71,12 @@
   </div>
 
   <!-- Nút điều hướng bên phải -->
-  <button class="nav-button next" (click)="nextPage()">
+  <button *ngIf="showNavButtons" class="nav-button next" (click)="nextPage()">
     <span class="arrow">&#10095;</span>
   </button>
 
   <!-- Chỉ báo trang -->
-  <div class="page-indicators">
+  <div class="page-indicators" *ngIf="showIndicators">
     <span
       class="page-dot"
       *ngFor="let _ of [].constructor(totalPages); let i = index"

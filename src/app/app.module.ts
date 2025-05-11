@@ -25,7 +25,6 @@ import { ProductComponent } from './content/testPagination/product/product.compo
 // import { TourListComponent } from './content/testPagination/tour-list/tour-list.component';
 import { ThuVienComponent } from './content/thu-vien/thu-vien.component';
 import { TraiNghiemKhComponent } from './content/thu-vien/trai-nghiem-kh/trai-nghiem-kh.component';
-import { TraiNghiemKh2Component } from './content/thu-vien/trai-nghiem-kh/trai-nghiem-kh2/trai-nghiem-kh2.component';
 import { VideoComponent } from './content/thu-vien/video/video.component';
 import { Video2Component } from './content/thu-vien/video/video2/video2.component';
 import { TinTucComponent } from './content/tin-tuc/tin-tuc.component';
@@ -48,6 +47,9 @@ import { SliderAlbumComponent } from './content/testPagination/slider-album/slid
 import { TourSliderComponent } from './content/testPagination/tour-slider/tour-slider.component';
 import { TourListComponent } from './content/testPagination/tour-list/tour-list.component';
 import { NewsContentComponent } from './content/testPagination/news-content/news-content.component';
+import { ContentTraiNgiemComponent } from './content/componentService/content-trai-ngiem/content-trai-ngiem.component';
+import { ThuVienSvComponent } from './content/componentService/thu-vien-sv/thu-vien-sv.component';
+import { RouterGenericSvComponent } from './content/componentService/router-generic-sv/router-generic-sv.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,6 @@ import { NewsContentComponent } from './content/testPagination/news-content/news
     TuyenDungComponent,
     ThuVienComponent,
     TraiNghiemKhComponent,
-    TraiNghiemKh2Component,
     VideoComponent,
     Video2Component,
 
@@ -88,6 +89,9 @@ import { NewsContentComponent } from './content/testPagination/news-content/news
 
     TourListComponent,
     NewsContentComponent,
+    ContentTraiNgiemComponent,
+    ThuVienSvComponent,
+    RouterGenericSvComponent,
   ],
   imports: [
     FormsModule,
