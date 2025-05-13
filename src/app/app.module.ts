@@ -16,7 +16,6 @@ import { GioiThieuComponent } from './content/gioi-thieu/gioi-thieu.component';
 import { TuyenDungComponent } from './content/gioi-thieu/tuyen-dung/tuyen-dung.component';
 import { VietnamTravelComponent } from './content/gioi-thieu/vietnam-travel/vietnam-travel.component';
 import { LienHeComponent } from './content/lien-he/lien-he.component';
-import { CategoryComponent } from './content/testPagination/category/category.component';
 import { DataTableComponent } from './content/testPagination/data-table/data-table.component';
 import { PaginationComponent } from './content/testPagination/pagination/pagination.component';
 import { PhanTrangComponent } from './content/testPagination/phan-trang/phan-trang.component';
@@ -47,9 +46,11 @@ import { SliderAlbumComponent } from './content/testPagination/slider-album/slid
 import { TourSliderComponent } from './content/testPagination/tour-slider/tour-slider.component';
 import { TourListComponent } from './content/testPagination/tour-list/tour-list.component';
 import { NewsContentComponent } from './content/testPagination/news-content/news-content.component';
-import { ContentTraiNgiemComponent } from './content/componentService/content-trai-ngiem/content-trai-ngiem.component';
+import { ContentTraiNgiemComponent } from './content/componentChild/content-trai-ngiem/content-trai-ngiem.component';
 import { ThuVienSvComponent } from './content/componentService/thu-vien-sv/thu-vien-sv.component';
 import { RouterGenericSvComponent } from './content/componentService/router-generic-sv/router-generic-sv.component';
+import { VideoContentComponent } from './content/componentChild/video-content/video-content.component';
+import { InfoTourComponent } from './content/componentService/info-tour/info-tour.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,6 @@ import { RouterGenericSvComponent } from './content/componentService/router-gene
     TourDuLichComponent,
     PaginationComponent,
     DataTableComponent,
-    CategoryComponent,
 
     ProductComponent,
     // TourListComponent,
@@ -92,6 +92,8 @@ import { RouterGenericSvComponent } from './content/componentService/router-gene
     ContentTraiNgiemComponent,
     ThuVienSvComponent,
     RouterGenericSvComponent,
+    VideoContentComponent,
+    InfoTourComponent,
   ],
   imports: [
     FormsModule,

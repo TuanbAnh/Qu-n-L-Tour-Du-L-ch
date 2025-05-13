@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 // Interface chung cho các mục hiển thị trong slider
 export interface SliderItem {
@@ -48,6 +49,8 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
   startX: number = 0;
   isDragging: boolean = false;
   dragThreshold: number = 50; // Ngưỡng để xác định có chuyển trang hay không
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.calculateTotalPages();
@@ -185,26 +188,20 @@ export class SliderAlbumComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Hàm để tạo slug URL từ tên tiêu đề
-  createSlugFromTitle(title: string): string {
-    if (!this.createUrlSlug) return title;
-
-    // Chuyển đổi tiêu đề thành đường dẫn URL thân thiện
-    return title
-      .toLowerCase()
-      .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu gạch ngang
-      .replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
-      .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
-      .replace(/[ìíịỉĩ]/g, 'i')
-      .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o')
-      .replace(/[ùúụủũưừứựửữ]/g, 'u')
-      .replace(/[ỳýỵỷỹ]/g, 'y')
-      .replace(/đ/g, 'd')
-      .replace(/[^\w-]/g, ''); // Xóa các ký tự đặc biệt
-  }
-
   // Phương thức để phát sự kiện click cho mục
   onItemClick(item: SliderItem): void {
     this.itemClick.emit(item);
+    // Không cần gọi router.navigate ở đây vì routerLink sẽ tự động xử lý việc chuyển trang
+  }
+
+  slugify(title: string): string {
+    if (!title) return '';
+    return title
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
   }
 }

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { infoTour } from '../../../service/infoTour.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-thu-vien-sv',

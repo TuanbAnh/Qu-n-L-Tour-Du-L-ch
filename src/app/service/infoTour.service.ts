@@ -11,7 +11,6 @@ export class infoTour {
   // Phương thức để đặt section hiện tại
   setCurrentSection(section: string) {
     this.currentSection = section;
-    console.log('Set current section:', section);
   }
 
   // Phương thức để lấy section hiện tại

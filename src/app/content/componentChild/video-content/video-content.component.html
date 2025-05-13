@@ -1,13 +1,13 @@
 <div class="content content-video">
   <div class="left">
-    <div class="title">{{ title }}</div>
+    <div class="title">{{ tourData?.title }}</div>
 
-    <div class="youtube">
+    <div class="youtube" *ngIf="safeVideoUrl">
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/aqBU6aeDBd0?si=MquuB-kKt2ed5GJe"
-        title="YouTube video player"
+        [src]="safeVideoUrl"
+        [title]="tourData?.title"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -30,9 +30,9 @@
 
     <!-- slide -->
     <div class="slider">
-      <div class="title">video liên quan</div>
+      <div class="title">VIDEO LIÊN QUAN</div>
 
-      <app-slider-album [items]="infoTour.videoList"></app-slider-album>
+      <app-slider-album [items]="filteredTourData"></app-slider-album>
     </div>
   </div>
 

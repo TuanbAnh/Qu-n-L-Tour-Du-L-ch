@@ -38,9 +38,14 @@
                 pageIndex * itemsPerPage + itemsPerPage
               )
             "
+            createSlugFromTitle
           >
             <div class="slide-column" [class]="itemClass" *ngIf="item">
-              <div class="slide-item" (click)="onItemClick(item)">
+              <div
+                class="slide-item"
+                (click)="onItemClick(item)"
+                [routerLink]="['/', slugify(item.title)]"
+              >
                 <div class="slide-image">
                   <img [src]="item.img" [alt]="item.title" />
                 </div>
