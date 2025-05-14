@@ -1,81 +1,66 @@
-<div class="tour-slider-container">
-  <!-- Nút điều hướng bên trái -->
-  <button class="nav-button prev" (click)="previousPage()">
-    <span class="arrow">&#10094;</span>
-  </button>
+<div
+  class="slider-container"
+  *ngIf="imageObject.length > 0"
+  [style.width]="sliderWidth"
+>
+  <div class="main-image-container">
+    <div class="arrows">
+      <button class="arrow-btn left" (click)="prev()">❮</button>
+      <button class="arrow-btn right" (click)="next()">❯</button>
+    </div>
 
-  <div
-    class="slider-content"
-    (mousedown)="onTouchStart($event)"
-    (mousemove)="onTouchMove($event)"
-    (mouseup)="onTouchEnd($event)"
-    (mouseleave)="onTouchLeave()"
-    (touchstart)="onTouchStart($event)"
-    (touchmove)="onTouchMove($event)"
-    (touchend)="onTouchEnd($event)"
-  >
-    <div class="slider-track" [style.transform]="sliderTransform">
-      <!-- Mỗi trang là một tour-page -->
+    <div class="main-image-wrapper">
       <div
-        class="tour-page"
-        *ngFor="let page of [].constructor(totalPages); let pageIndex = index"
+        class="main-image-slider"
+        [style.transform]="'translateX(' + -currentIndex * 100 + '%)'"
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp()"
+        (mouseleave)="onMouseUp()"
+        (touchstart)="onTouchStart($event)"
+        (touchmove)="onTouchMove($event)"
+        (touchend)="onTouchEnd()"
       >
-        <div class="tour-row">
-          <!-- Tours cho trang hiện tại -->
-          <ng-container
-            *ngFor="
-              let tour of tours.slice(
-                pageIndex * itemsPerPage,
-                pageIndex * itemsPerPage + itemsPerPage
-              )
-            "
-          >
-            <div class="tour-column" *ngIf="tour">
-              <div
-                class="tour-card"
-                [routerLink]="['/', createSlugFromTitle(tour.title)]"
-              >
-                <div class="tour-image">
-                  <img [src]="tour.img" [alt]="tour.title" />
-                </div>
-                <div class="tour-title">
-                  <h3>{{ tour.title }}</h3>
-                </div>
-              </div>
-            </div>
-          </ng-container>
-
-          <!-- Nếu trang cuối không đủ 3 tour, thêm card rỗng -->
-          <ng-container
-            *ngIf="
-              pageIndex === totalPages - 1 && tours.length % itemsPerPage !== 0
-            "
-          >
-            <div
-              class="tour-column"
-              *ngFor="let _ of emptySlots; let i = index"
-            >
-              <div class="tour-card empty"></div>
-            </div>
-          </ng-container>
+        <div class="main-image" *ngFor="let img of imageObject">
+          <img
+            [src]="img.anhDaiDien"
+            alt="Tour image"
+            [style.height.px]="mainImageHeight"
+          />
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Nút điều hướng bên phải -->
-  <button class="nav-button next" (click)="nextPage()">
-    <span class="arrow">&#10095;</span>
-  </button>
-
-  <!-- Chỉ báo trang -->
-  <div class="page-indicators">
-    <span
-      class="page-dot"
-      *ngFor="let _ of [].constructor(totalPages); let i = index"
-      [class.active]="currentPage === i"
-      (click)="goToPage(i)"
+  <!-- Container cho thumbnails với thiết kế mới -->
+  <div class="thumbs-container-wrapper" *ngIf="showThumbs">
+    <!-- Hiển thị tối đa 5 ảnh và không có nút điều hướng -->
+    <div
+      class="thumbs-container"
+      #thumbsContainer
+      *ngIf="showThumbs"
+      (mousedown)="onThumbsMouseDown($event)"
+      (mousemove)="onThumbsMouseMove($event)"
+      (mouseup)="onThumbsMouseUp()"
+      (mouseleave)="onThumbsMouseUp()"
+      (touchstart)="onThumbsTouchStart($event)"
+      (touchmove)="onThumbsTouchMove($event)"
+      (touchend)="onThumbsTouchEnd()"
     >
-    </span>
+      <div class="thumbs">
+        <div
+          class="thumb"
+          *ngFor="let img of imageObject; let i = index"
+          (click)="selectImage(i)"
+          [class.active]="i === currentIndex"
+        >
+          <img
+            [src]="img.anhDaiDien"
+            alt="thumbnail"
+            [style.max-height.px]="thumbImageHeight"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </div>

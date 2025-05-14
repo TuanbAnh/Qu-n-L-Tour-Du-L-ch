@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <div class="info-tour">
+      <div class="left">
+        <app-tour-slider
+          [images]="infoTour.imgListTour"
+          [timeSlider]="10"
+          [showThumbs]="true"
+          [mainImageHeight]="400"
+          [thumbImageHeight]="70"
+          [sliderWidth]="'100%'"
+        >
+          (imageChanged)="onImageChanged($event)" ></app-tour-slider
+        >
+      </div>
+
+      <div class="right">
+        <div class="tour-container">
+          <h2 class="tour-title">
+            TOUR PHÚ QUỐC 4 NGÀY 3 ĐÊM - THIÊN ĐƯỜNG ĐẢO NGỌC CỦA BIỂN
+          </h2>
+          <hr />
+
+          <div class="tour-info">
+            <p><strong>Thời gian:</strong> 4 ngày 3 đêm</p>
+            <p><strong>Phương tiện:</strong> Máy bay - Ô tô</p>
+            <p><strong>Lưu trú:</strong> Khách sạn từ 3 sao</p>
+            <p><strong>Khởi hành:</strong> Hằng ngày</p>
+          </div>
+
+          <div class="tour-price-box">
+            <p class="price-label">Giá từ:</p>
+            <span class="price-new">3.990.000 vnd</span>
+            <span class="price-old">4.990.000 vnd</span>
+
+            <button class="btn-primary">ĐẶT TOUR</button>
+          </div>
+
+          <div class="tour-tags">
+            <span class="tag">Tour Phú Quốc</span>
+            <span class="tag">Phú Quốc</span>
+            <span class="tag">4 ngày 3 đêm</span>
+            <span class="tag">đảo ngọc</span>
+            <span class="tag">tour miền nam</span>
+            <span class="tag">tour trong nước</span>
+            <span class="tag">du lịch biển</span>
+          </div>
+
+          <div class="share-contact">
+            <p>
+              Hoặc Quý khách có thể để lại thông tin liên hệ điện thoại chúng
+              tôi sẽ liên hệ trực tiếp tư vấn Quý khách ạ.
+            </p>
+            <div class="phone-input">
+              <input type="tel" placeholder="* Số điện thoại" />
+              <button class="btn-send">GỬI ĐI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment">
+      <button class="mo-ta">Mo ta</button>
+      <button class="binh-luan">Binh luan</button>
+    </div>
+  </div>
+</div>

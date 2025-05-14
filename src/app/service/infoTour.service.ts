@@ -18,6 +18,19 @@ export class infoTour {
     return this.currentSection;
   }
 
+  //  slider của 1 tour
+  imgListTour: string[] = [
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/nha-thung-nuoc-mam-ca-com.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/vuon-tieu-suoi-da.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/nha-tu-phu-quoc.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/bai-sao.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/grand-world-phu-quoc.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/du-lich-phu-quoc.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/vuon-tieu-suoi-da.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/nha-tu-phu-quoc.jpg',
+    'https://www.vietnamtravelgroup.com.vn/datafiles/32985/upload/images/albums/mien-tay/bai-sao.jpg',
+  ];
+
   // video
   videoList = [
     {

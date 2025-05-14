@@ -50,7 +50,7 @@ import { ContentTraiNgiemComponent } from './content/componentChild/content-trai
 import { ThuVienSvComponent } from './content/componentService/thu-vien-sv/thu-vien-sv.component';
 import { RouterGenericSvComponent } from './content/componentService/router-generic-sv/router-generic-sv.component';
 import { VideoContentComponent } from './content/componentChild/video-content/video-content.component';
-import { InfoTourComponent } from './content/componentService/info-tour/info-tour.component';
+import { InfoTourComponent } from './content/componentChild/info-tour/info-tour.component';
 
 @NgModule({
   declarations: [
